@@ -1,0 +1,46 @@
+@import '../../styles/Variables';
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 44px;
+  cursor: pointer;
+}
+
+.number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 35px;
+}
+.number_active {
+  @extend .number;
+  background: $blue;
+  color: $white;
+}
+
+.number_disabled {
+  @extend .number;
+  background: $greyDisabledStep;
+  color: $black;
+}
+
+.description {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.description_active {
+  @extend .description;
+  color: #383838;
+}
+
+.description_disabled {
+  @extend .description;
+  color: $black;
+  opacity: 0.6;
+}
