@@ -1,0 +1,82 @@
+@import '../styles/Variables';
+
+.container {
+    display: flex;
+    flex-direction: column;
+
+    background-color:#FAFAFA;
+    padding: 0 80px;
+    height: 100vh;
+    .header {
+        margin-top: 244px;
+        .header_title {
+            margin-bottom: 20px;
+        }
+        .header_description {
+            font-weight: 300;
+            font-size: 17px;
+            line-height: 22px;
+            color: $basicBlack;
+            opacity: 0.5;
+
+        }
+    }
+    .steps {
+        margin-top: 72px;
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 44px;
+        }
+        //.steps_number {
+        //    display: flex;
+        //    justify-content: center;
+        //    align-items: center;
+        //    width: 42px;
+        //    height: 42px;
+        //
+        //    background: $blue;
+        //    color: $white;
+        //
+        //    border-radius: 35px;
+        //
+        //}
+        .description {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 19px;
+        }
+    }
+}
+
+
+.number {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 35px;
+}
+.number_active {
+   @extend .number;
+    background: $blue;
+    color: $white;
+}
+
+.number_disabled {
+    @extend .number;
+    background: $greyDisabledStep;
+    color: $black;
+}
+
+.description_active {
+    color: #383838;
+}
+
+.description_disabled {
+    color: $black;
+    opacity: 0.6;
+}
+
