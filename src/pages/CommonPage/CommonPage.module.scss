@@ -1,0 +1,63 @@
+@import '../../styles/Variables';
+
+.container {
+  padding: 110px 52px 110px 100px;
+  .header {
+    margin-top: 40px;
+    margin-bottom: 64px;
+    .title {
+      margin-bottom: 20px;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 22px;
+      color: $black;
+    }
+    .description {
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 19px;
+      color: $basicBlack;
+      opacity: 0.5;
+    }
+  }
+  .row {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 40px;
+    .genders {
+      display: flex;
+    }
+    .gender_btn {
+      width: 74px;
+      height: 52px;
+      border: 1px solid #E4E5E7;
+      border-radius: 7px;
+      padding: 18px 17px;
+      .inner {
+        display: flex;
+        gap: 15px;
+        width: 100%;
+
+      }
+      .inner_active {
+        filter: invert(59%) sepia(100%) saturate(2916%) hue-rotate(197deg) brightness(101%) contrast(98%);
+      }
+    }
+    .gender_btn_active {
+      border: 1px solid #5795FD;
+    }
+
+    .date {
+      padding: 10px 10px;
+      border: 1px solid #E4E5E7;
+      border-radius: 7px;
+      cursor: pointer;
+    }
+  }
+  .form_buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 81px;
+  }
+}
+
