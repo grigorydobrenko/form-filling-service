@@ -1,0 +1,46 @@
+@import '../../styles/Variables';
+
+.wrapper{
+  position: relative;
+  display: inline-block;
+}
+
+.input{
+  box-sizing: border-box;
+  width: 100%;
+  padding: 17px 20px;
+
+  font-size: $fp;
+  font-weight: $regular;
+  color: $black;
+
+  border: 1px solid #E4E5E7;
+  border-radius: 7px;
+  outline: none;
+  &::placeholder {
+    color: #999999;
+    opacity: 0.7;
+  }
+}
+
+
+
+.input_error{
+  border: 1px solid #FF4040;
+}
+
+.error{
+  position: absolute;
+  bottom: -16px;
+  left: 0;
+
+  font-size: 12px;
+  color: #FF4040;
+}
+
+.button{
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}

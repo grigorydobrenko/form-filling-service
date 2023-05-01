@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import style from './SideBar.module.scss';
-import Step from "../components/step/Step";
+import Step from "../../components/Step/Step";
 
 const SideBar = () => {
 
