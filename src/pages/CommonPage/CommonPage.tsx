@@ -61,23 +61,23 @@ const CommonPage = (): JSX.Element => {
                 </div>
             </div>
             <div className={style.row}>
-                <Label label={'Гражданство*'}>
+                <Label label={'Гражданство*'} className={style.country}>
                     <Select options={COUNTRY}/>
                 </Label>
                 <div>
                     <Label label={'Пол*'} className={style.genders}>
-                        <Button color={'white'}
-                                className={cn(style.gender_btn, {[style.gender_btn_active]: gender === 'male'})}
-                                onClick={() => setGender('male')}>
+                        <div className={style.buttons_container}><Button color={'white'}
+                                   className={cn(style.gender_btn, {[style.gender_btn_active]: gender === 'male'})}
+                                   onClick={() => setGender('male')}>
                             <div className={cn(style.inner, {[style.inner_active]: gender === 'male'})}>
                                 <Man/><span>М</span></div>
                         </Button>
-                        <Button color={'white'}
-                                className={cn(style.gender_btn, {[style.gender_btn_active]: gender === 'female'})}
-                                onClick={() => setGender('female')}>
-                            <div className={cn(style.inner, {[style.inner_active]: gender === 'female'})}>
-                                <Woman/><span>Ж</span></div>
-                        </Button>
+                            <Button color={'white'}
+                                    className={cn(style.gender_btn, {[style.gender_btn_active]: gender === 'female'})}
+                                    onClick={() => setGender('female')}>
+                                <div className={cn(style.inner, {[style.inner_active]: gender === 'female'})}>
+                                    <Woman/><span>Ж</span></div>
+                            </Button></div>
                     </Label>
                 </div>
                 <div>

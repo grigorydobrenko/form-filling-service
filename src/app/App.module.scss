@@ -1,18 +1,19 @@
 :root {
-  --wrapper: 1000px;
-  --wrapper-padding: 80px;
-  --space: max(
-          1rem,
-          calc((100% - calc(var(--wrapper) - var(--wrapper-padding) * 2)) / 2)
-  );
+  //--wrapper: 1440px;
+  //--wrapper-padding: 80px;
+  //--space: max(
+  //        1rem,
+  //        calc((100vw - calc(var(--wrapper) - (var(--wrapper-padding) * 2) ) ) / 2)
+  //);
 }
 
 .container {
   display: flex;
   margin: 0 auto;
+  max-width: 1440px;
   ////max-width: 1280px;
   //padding-left: calc(100vw - calc(1100px / 2) - 32px);
 
-  max-width: calc(700px + var(--space));
+  //max-width: calc(700px + var(--space));
 }
 
