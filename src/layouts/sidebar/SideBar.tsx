@@ -1,14 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import style from './SideBar.module.scss';
 import Step from "../../components/Step/Step";
+import {useAppSelector} from "../../app/hooks";
 
 const SideBar = () => {
 
-    const [step, setStep] = useState(1)
-
-    const changeStep = (step: number) => {
-        setStep(step)
-    }
+    const step = useAppSelector(state => state.app.step)
 
     return (
         <div className={style.container}>
@@ -19,11 +16,11 @@ const SideBar = () => {
                 </div>
             </div>
             <div className={style.steps}>
-                <Step stepId={1} step={step} changeStep={changeStep} title={'Общие'}/>
-                <Step stepId={2} step={step} changeStep={changeStep} title={'Форма собственности'}/>
-                <Step stepId={3} step={step} changeStep={changeStep} title={'Адрес регистрации'}/>
-                <Step stepId={4} step={step} changeStep={changeStep} title={'Адрес проживания'}/>
-                <Step stepId={5} step={step} changeStep={changeStep} title={'Социальные сети'}/>
+                <Step stepId={1} step={step} isDone={step > 1} title={'Общие'}/>
+                <Step stepId={2} step={step} isDone={step > 2} title={'Форма собственности'}/>
+                <Step stepId={3} step={step} isDone={step > 3} title={'Адрес регистрации'}/>
+                <Step stepId={4} step={step} isDone={step > 4} title={'Адрес проживания'}/>
+                <Step stepId={5} step={step} isDone={step > 5} title={'Социальные сети'}/>
             </div>
         </div>
     );

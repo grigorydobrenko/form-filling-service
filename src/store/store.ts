@@ -1,9 +1,11 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 import {appReducer} from "./reducers/appSlice";
+import {dataReducer} from "./reducers/dataSlice";
 
 const rootReducer = combineReducers({
     app: appReducer,
+    data: dataReducer,
 })
 
 export const store = configureStore({

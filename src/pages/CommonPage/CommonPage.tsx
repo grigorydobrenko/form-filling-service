@@ -11,6 +11,9 @@ import {IOption} from "../../components/Select/Select.props";
 import {Button} from "../../components/Button/Button";
 import cn from "classnames";
 import {SubmitHandler, useForm} from "react-hook-form";
+import {CommonPersonalData, setCommonData} from "../../store/reducers/dataSlice";
+import {useAppDispatch} from "../../app/hooks";
+import {setStep} from "../../store/reducers/appSlice";
 
 export const CITY_DATA: IOption[] = [
     {label: 'Санкт-Птеребург', value: 'Санкт-Птеребург'},
@@ -24,29 +27,22 @@ export const COUNTRY: IOption[] = [
     {label: 'Казахстан', value: 'Казахстан'},
 ];
 
-type Inputs = {
-    firstName: string,
-    surname: string,
-    lastName: string,
-    birthPlace: string,
-    city: string,
-    country: string,
-    birthDate: string,
-    gender: string
-};
-
 const CommonPage = (): JSX.Element => {
 
     const initialState = 'male'
     const [gender, setGender] = useState(initialState)
 
-    const {register, handleSubmit} = useForm<Inputs>();
-    const onSubmit: SubmitHandler<Inputs> = data => {
+    const {register, handleSubmit, formState: { errors }} = useForm<CommonPersonalData>();
+
+    const dispatch = useAppDispatch()
+
+    const onSubmit: SubmitHandler<CommonPersonalData> = data => {
         data.gender = gender
-        console.log(data);
+        dispatch(setCommonData({data}))
+        dispatch(setStep({currentStep: 2}))
     }
 
-    const nameValidateScheme = {required: true, minLength: 2, maxLength: 30}
+    const nameValidateScheme = {required: 'Field is required', minLength: 2, maxLength: 30}
 
     return (
         <div className={style.container}>
@@ -60,11 +56,13 @@ const CommonPage = (): JSX.Element => {
                     <div>
                         <Label label={'Фамилия*'}>
                             <Input placeholder={'Васильев'} {...register("lastName", nameValidateScheme)}/>
+                            {errors.lastName && <span className={style.red}>{errors.lastName.message}</span>}
                         </Label>
                     </div>
                     <div>
                         <Label label={'Имя*'}>
                             <Input placeholder={'Иван'} {...register("firstName", nameValidateScheme)}/>
+                            {errors.firstName && <span className={style.red}>{errors.firstName.message}</span>}
                         </Label>
                     </div>
                 </div>
@@ -72,6 +70,7 @@ const CommonPage = (): JSX.Element => {
                     <div>
                         <Label label={'Отчество*'}>
                             <Input placeholder={'Отчество'} {...register("surname", nameValidateScheme)}/>
+                            {errors.surname && <span className={style.red}>{errors.surname.message}</span>}
                         </Label>
                     </div>
                     <div>
@@ -102,7 +101,8 @@ const CommonPage = (): JSX.Element => {
                     </div>
                     <div>
                         <Label label={'Дата рождения*'}>
-                            <input type="date" className={style.date} {...register("birthDate")}/>
+                            <input type="date" className={style.date} {...register("birthDate", {required: 'required'})}/>
+                            {errors.birthDate && <span className={style.red}>{errors.birthDate.message}</span>}
                         </Label>
                     </div>
                 </div>
@@ -110,10 +110,11 @@ const CommonPage = (): JSX.Element => {
                     <Label label={'Место рождения (как указано в паспорте)*'}>
                         <Input
                             placeholder={'Введите наименование региона и населенного пункта'} {...register("birthPlace", {
-                            required: true,
+                            required: 'Field is required',
                             minLength: 2,
                             maxLength: 80
                         })}/>
+                        {errors.birthPlace && <span className={style.red}>{errors.birthPlace.message}</span>}
                     </Label>
                 </div>
                 <div className={style.form_buttons}>
