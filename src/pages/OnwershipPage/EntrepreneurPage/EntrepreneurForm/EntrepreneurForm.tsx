@@ -14,20 +14,21 @@ export const OWNERSHIP: Option[] = [
     {label: 'Общество с ограниченной ответственностью (ООО)', value: 'Общество с ограниченной ответственностью (ООО)'},
 ];
 
-interface EntrepreneurData {
-    ipn: 'string'
+export interface EntrepreneurData {
+    ipn: string,
+    mask: string
 }
 
 const EntrepreneurForm = () => {
 
-    const {register, handleSubmit, formState: {errors}} = useForm<EntrepreneurData>();
+    const {register, handleSubmit, formState: {errors}, setValue} = useForm<EntrepreneurData>();
 
     const dispatch = useAppDispatch()
 
     const onSubmit: SubmitHandler<EntrepreneurData> = data => {
         console.log(data)
     }
-
+    console.log(register('ipn'))
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className={style.row}>
@@ -37,10 +38,10 @@ const EntrepreneurForm = () => {
             </div>
             <div className={style.row}>
                 <Label label={'ИНН*'}>
-                    <InputWithMask mask="99999999" maskPlaceholder="х" placeholder={"xxxxxxxx"}/>
+                    <InputWithMask mask="99999999" maskPlaceholder="х" placeholder={"xxxxxxxx"} {...register("mask")}/>
                 </Label>
                 <Label label={'Скан ИНН*'}>
-                    <InputDropzone {...register("ipn")}/>
+                    <InputDropzone { ...register("ipn")} setValue={setValue}/>
                 </Label>
             </div>
             <div></div>
