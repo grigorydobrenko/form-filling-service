@@ -4,10 +4,12 @@
   border: 1px dashed #E4E5E7;
   border-radius: 7px;
   cursor: pointer;
+  height: 52px;
+  width: 332px;
 }
 
 .dropzone_text {
-  padding: 18px 20px;
+  padding: 15px 20px;
   font-weight: 400;
   font-size: 15px;
   line-height: 18px;
@@ -17,6 +19,23 @@
   opacity: 0.7;
 }
 
+.loaded_form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 17px 20px;
+}
+
 .uploaded_form {
   display: flex;
+  width: 100%;
+}
+
+
+.uploaded_done {
+  margin-right: 12px;
+}
+
+.reset {
+  margin-left: auto;
 }

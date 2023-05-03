@@ -41,7 +41,7 @@ const EntrepreneurForm = () => {
                     <InputWithMask mask="99999999" maskPlaceholder="х" placeholder={"xxxxxxxx"} {...register("mask")}/>
                 </Label>
                 <Label label={'Скан ИНН*'}>
-                    <InputDropzone { ...register("ipn")} setValue={setValue}/>
+                    <InputDropzone setValue={setValue}/>
                 </Label>
             </div>
             <div></div>
