@@ -1,0 +1,27 @@
+.wrapper{
+  position: relative;
+  display: inline-block;
+}
+
+.input{
+  box-sizing: border-box;
+  width: 100%;
+  padding: 17px 20px;
+
+  font-size: 14px;
+  color: #000;
+
+  border: 1px solid #E4E5E7;
+  border-radius: 7px;
+  outline: none;
+
+}
+
+.error{
+  position: absolute;
+  bottom: -15px;
+  left: 0;
+
+  font-size: 13px;
+  color: #FF4040;
+}
