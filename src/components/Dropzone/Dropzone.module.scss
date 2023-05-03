@@ -1,0 +1,22 @@
+.dropzone {
+  display: flex;
+  background: #FBFBFB;
+  border: 1px dashed #E4E5E7;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.dropzone_text {
+  padding: 18px 20px;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+
+  color: #999999;
+
+  opacity: 0.7;
+}
+
+.uploaded_form {
+  display: flex;
+}
