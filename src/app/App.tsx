@@ -3,7 +3,7 @@ import style from './App.module.scss';
 import SideBar from "../layouts/sidebar/SideBar";
 import CommonPage from "../pages/CommonPage/CommonPage";
 import {useAppSelector} from "./hooks";
-import OwnershipForm from "../pages/OwnershipForm/OwnershipForm";
+import OwnershipPage from "../pages/OnwershipPage/OwnershipPage";
 
 function App() {
 
@@ -13,7 +13,7 @@ function App() {
         <div className={style.container}>
             <SideBar/>
             {step === 1 && <CommonPage/>}
-            {step === 2 && <OwnershipForm/>}
+            {step === 2 && <OwnershipPage/>}
         </div>
     );
 }

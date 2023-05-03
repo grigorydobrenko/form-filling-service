@@ -4,7 +4,7 @@ import style from '../CommonPage.module.scss'
 import {Input} from "../../../components/Input/Input";
 import {Label} from "../../../components/Label/Label";
 import {Select} from "../../../components/Select/Select";
-import {IOption} from "../../../components/Select/Select.props";
+import {Option} from "../../../components/Select/Select.props";
 import {Button} from "../../../components/Button/Button";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {CommonPersonalData, setCommonData} from "../../../store/reducers/dataSlice";
@@ -12,17 +12,17 @@ import {useAppDispatch} from "../../../app/hooks";
 import {setStep} from "../../../store/reducers/appSlice";
 import Genders from "./Genders/Genders";
 
-export const CITY_DATA: IOption[] = [
+export const CITY_DATA: Option[] = [
     {label: 'Санкт-Птеребург', value: 'Санкт-Птеребург'},
     {label: 'Москва', value: 'Москва'},
     {label: 'Минск', value: 'Минск'},
-];
+]
 
-export const COUNTRY: IOption[] = [
+export const COUNTRY: Option[] = [
     {label: 'Россия', value: 'Россия'},
     {label: 'Беларусь', value: 'Беларусь'},
     {label: 'Казахстан', value: 'Казахстан'},
-];
+]
 
 const CommonPageForm = (): JSX.Element => {
 
