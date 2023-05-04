@@ -8,6 +8,7 @@ import InputDropzone from "../../../../components/Dropzone/Dropzone";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {useAppDispatch} from "../../../../app/hooks";
 import {Button} from "../../../../components/Button/Button";
+import cn from "classnames";
 
 export const OWNERSHIP: Option[] = [
     {label: 'Индивидуальный предприниматель (ИП)', value: 'Индивидуальный предприниматель (ИП)'},
@@ -36,19 +37,41 @@ const EntrepreneurForm = () => {
                     <Select options={OWNERSHIP}/>
                 </Label>
             </div>
-            <div className={style.row}>
-                <Label label={'ИНН*'}>
-                    <InputWithMask mask="99999999" maskPlaceholder="х" placeholder={"xxxxxxxx"} {...register("mask")}/>
+            <div className={cn(style.row, style.second_row)}>
+                <Label label={'ИНН*'} className={style.row_inner}>
+                    <InputWithMask mask='99999999' maskPlaceholder='х' placeholder={'xxxxxxxx'} {...register('mask')}/>
                 </Label>
                 <Label label={'Скан ИНН*'}>
                     <InputDropzone setValue={setValue}/>
                 </Label>
+                <Label label={'Датарегистрации*'} className={style.row_inner}>
+                    <InputWithMask mask='99.99.9999' maskPlaceholder='дд.мм.гггг' placeholder={'дд.мм.гггг'}/>
+                </Label>
             </div>
-            <div></div>
-            <div></div>
-            <div></div>
+            <div className={style.row}>
+                <Label label={'ОГРНИП*'}>
+                    <InputWithMask mask='9999999999' maskPlaceholder='х' placeholder={'ххххххххххххххх'}/>
+                </Label>
+                <Label label={'Скан ОГРНИП*'}>
+                    <InputDropzone setValue={setValue}/>
+                </Label>
+            </div>
+            <div className={style.row}>
+                <Label label={'Скан договора аренды помещения (офиса)'}>
+                    <InputDropzone setValue={setValue}/>
+                </Label>
+                <Label label={'Скан выписки из ЕГРИП (не старше 3 месяцев)*'}>
+                    <InputDropzone setValue={setValue}/>
+                </Label>
+            </div>
             <div>
-                <Button color={'white'}>Отмена</Button>
+                <label className={style.contract_row}>
+                    <input type="checkbox" name="checkbox" value="value"/>
+                    <span className={style.contract}>Нет договора</span>
+                </label>
+            </div>
+            <div className={style.row}>
+                <Button color={'white'}>Назад</Button>
                 <Button type={'submit'}>Далее</Button>
             </div>
         </form>

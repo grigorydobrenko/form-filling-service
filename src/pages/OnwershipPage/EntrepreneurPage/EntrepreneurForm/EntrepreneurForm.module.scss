@@ -3,3 +3,28 @@
 .first_row {
     width: 520px;
 }
+
+.second_row {
+    gap: 20px;
+}
+
+.row_inner {
+    min-width: 157px;
+}
+
+.contract_row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    margin-bottom: 62px;
+    .contract {
+        display: flex;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        color: #999999;
+        opacity: 0.87;
+
+    }
+}
