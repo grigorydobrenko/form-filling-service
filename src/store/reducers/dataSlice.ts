@@ -30,3 +30,14 @@ export interface CommonPersonalData {
     gender: string,
     birthDate: string
 }
+
+export interface OwnershipEntrepreneur {
+    inn: string,
+    innImg: string,
+    registrationDate: string,
+    ogrnip: string,
+    ogrnipImg: string,
+    loanImg: string,
+    excerptImg: string,
+    contract: boolean
+}

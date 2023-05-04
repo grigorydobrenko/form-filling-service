@@ -7,7 +7,8 @@ import {Option} from "../../components/Select/Select.props";
 import style from "./Ownership.module.scss";
 import {Button} from "../../components/Button/Button";
 import {useAppDispatch} from "../../app/hooks";
-import {ActivityType, setOwnership, setStep, StepType} from "../../store/reducers/appSlice";
+import {ActivityType, setOwnership} from "../../store/reducers/appSlice";
+import {switchStep} from "../../utils/switchStep";
 
 export const OWNERSHIP: Option[] = [
     {label: 'Индивидуальный предприниматель (ИП)', value: 'Индивидуальный предприниматель (ИП)'},
@@ -22,10 +23,6 @@ const OwnershipPage = () => {
         dispatch(setOwnership({activity}))
     }
 
-    const switchStep = (step: StepType) => {
-        dispatch(setStep({currentStep: step}))
-    }
-
     return (
         <div className={style.container}>
             <Logo/>
@@ -34,8 +31,8 @@ const OwnershipPage = () => {
                 <Select options={OWNERSHIP} onChangeOption={setOwnerShip}/>
             </Label>
             <div className={style.buttons}>
-                <Button color={'white'} onClick={() => switchStep(1)}>Назад</Button>
-                <Button type={'submit'} onClick={() => switchStep(2.1)}>Далее</Button>
+                <Button color={'white'} onClick={() => switchStep(1, dispatch)}>Назад</Button>
+                <Button type={'submit'} onClick={() => switchStep(2.1, dispatch)}>Далее</Button>
             </div>
         </div>
     );

@@ -9,27 +9,37 @@ import {SubmitHandler, useForm} from "react-hook-form";
 import {useAppDispatch} from "../../../../app/hooks";
 import {Button} from "../../../../components/Button/Button";
 import cn from "classnames";
+import {OwnershipEntrepreneur} from "../../../../store/reducers/dataSlice";
+import {switchStep} from "../../../../utils/switchStep";
+import {setStep} from "../../../../store/reducers/appSlice";
 
 export const OWNERSHIP: Option[] = [
     {label: 'Индивидуальный предприниматель (ИП)', value: 'Индивидуальный предприниматель (ИП)'},
     {label: 'Общество с ограниченной ответственностью (ООО)', value: 'Общество с ограниченной ответственностью (ООО)'},
 ];
 
-export interface EntrepreneurData {
-    ipn: string,
-    mask: string
-}
-
 const EntrepreneurForm = () => {
 
-    const {register, handleSubmit, formState: {errors}, setValue} = useForm<EntrepreneurData>();
+    const {
+        register,
+        handleSubmit,
+        formState: {errors},
+        setError,
+        clearErrors,
+        setValue
+    } = useForm<OwnershipEntrepreneur>();
 
     const dispatch = useAppDispatch()
 
-    const onSubmit: SubmitHandler<EntrepreneurData> = data => {
+    const onSubmit: SubmitHandler<OwnershipEntrepreneur> = data => {
         console.log(data)
+        dispatch(setStep({currentStep: 3}))
     }
-    console.log(register('ipn'))
+
+    const validationSheme = {
+        required: 'Required',
+    }
+
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className={style.row}>
@@ -39,39 +49,50 @@ const EntrepreneurForm = () => {
             </div>
             <div className={cn(style.row, style.second_row)}>
                 <Label label={'ИНН*'} className={style.row_inner}>
-                    <InputWithMask mask='99999999' maskPlaceholder='х' placeholder={'xxxxxxxx'} {...register('mask')}/>
+                    <InputWithMask mask='99999999' maskPlaceholder='х'
+                                   placeholder={'xxxxxxxx'} {...register('inn', validationSheme)}/>
+                    {errors.inn && <span className={style.red}>{errors.inn.message}</span>}
                 </Label>
                 <Label label={'Скан ИНН*'}>
-                    <InputDropzone setValue={setValue}/>
+                    <InputDropzone setValue={setValue} name={'innImg'} setError={setError} clearErrors={clearErrors}/>
+                    {errors.innImg && <span className={style.red}>{errors.innImg.message}</span>}
                 </Label>
                 <Label label={'Датарегистрации*'} className={style.row_inner}>
-                    <InputWithMask mask='99.99.9999' maskPlaceholder='дд.мм.гггг' placeholder={'дд.мм.гггг'}/>
+                    <InputWithMask mask='99.99.9999' maskPlaceholder='дд.мм.гггг'
+                                   placeholder={'дд.мм.гггг'} {...register('registrationDate', validationSheme)}/>
+                    {errors.registrationDate && <span className={style.red}>{errors.registrationDate.message}</span>}
                 </Label>
             </div>
             <div className={style.row}>
                 <Label label={'ОГРНИП*'}>
-                    <InputWithMask mask='9999999999' maskPlaceholder='х' placeholder={'ххххххххххххххх'}/>
+                    <InputWithMask mask='999999999999999' maskPlaceholder='х'
+                                   placeholder={'ххххххххххххххх'} {...register('ogrnip', validationSheme)}/>
+                    {errors.ogrnip && <span className={style.red}>{errors.ogrnip.message}</span>}
                 </Label>
                 <Label label={'Скан ОГРНИП*'}>
-                    <InputDropzone setValue={setValue}/>
+                    <InputDropzone setValue={setValue} name={'ogrnipImg'} setError={setError}
+                                   clearErrors={clearErrors}/>
+                    {errors.ogrnipImg && <span className={style.red}>{errors.ogrnipImg.message}</span>}
                 </Label>
             </div>
             <div className={style.row}>
                 <Label label={'Скан договора аренды помещения (офиса)'}>
-                    <InputDropzone setValue={setValue}/>
+                    <InputDropzone setValue={setValue} name={'loanImg'}/>
                 </Label>
                 <Label label={'Скан выписки из ЕГРИП (не старше 3 месяцев)*'}>
-                    <InputDropzone setValue={setValue}/>
+                    <InputDropzone setValue={setValue} name={'excerptImg'} setError={setError}
+                                   clearErrors={clearErrors}/>
+                    {errors.excerptImg && <span className={style.red}>{errors.excerptImg.message}</span>}
                 </Label>
             </div>
             <div>
                 <label className={style.contract_row}>
-                    <input type="checkbox" name="checkbox" value="value"/>
+                    <input type="checkbox" value="value" {...register('contract')}/>
                     <span className={style.contract}>Нет договора</span>
                 </label>
             </div>
             <div className={style.row}>
-                <Button color={'white'}>Назад</Button>
+                <Button color={'white'} onClick={() => switchStep(2, dispatch)}>Назад</Button>
                 <Button type={'submit'}>Далее</Button>
             </div>
         </form>
