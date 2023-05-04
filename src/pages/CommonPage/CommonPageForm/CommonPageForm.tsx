@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 
-import style from '../CommonPage.module.scss'
+import style from '../CommonPage.module.scss';
+import globalStyles from '../../../styles/Global.module.scss'
 import {Input} from "../../../components/Input/Input";
 import {Label} from "../../../components/Label/Label";
 import {Select} from "../../../components/Select/Select";
@@ -52,13 +53,13 @@ const CommonPageForm = (): JSX.Element => {
                 <div>
                     <Label label={'Фамилия*'}>
                         <Input placeholder={'Васильев'} {...register("lastName", nameValidateScheme)}/>
-                        {errors.lastName && <span className={style.red}>{errors.lastName.message}</span>}
+                        {errors.lastName && <span className={globalStyles.red}>{errors.lastName.message}</span>}
                     </Label>
                 </div>
                 <div>
                     <Label label={'Имя*'}>
                         <Input placeholder={'Иван'} {...register("firstName", nameValidateScheme)}/>
-                        {errors.firstName && <span className={style.red}>{errors.firstName.message}</span>}
+                        {errors.firstName && <span className={globalStyles.red}>{errors.firstName.message}</span>}
                     </Label>
                 </div>
             </div>
@@ -66,7 +67,7 @@ const CommonPageForm = (): JSX.Element => {
                 <div>
                     <Label label={'Отчество*'}>
                         <Input placeholder={'Отчество'} {...register("surname", nameValidateScheme)}/>
-                        {errors.surname && <span className={style.red}>{errors.surname.message}</span>}
+                        {errors.surname && <span className={globalStyles.red}>{errors.surname.message}</span>}
                     </Label>
                 </div>
                 <div>
@@ -87,7 +88,7 @@ const CommonPageForm = (): JSX.Element => {
                 <div>
                     <Label label={'Дата рождения*'}>
                         <input type="date" className={style.date} {...register("birthDate", {required: 'required'})}/>
-                        {errors.birthDate && <span className={style.red}>{errors.birthDate.message}</span>}
+                        {errors.birthDate && <span className={globalStyles.red}>{errors.birthDate.message}</span>}
                     </Label>
                 </div>
             </div>
@@ -95,7 +96,7 @@ const CommonPageForm = (): JSX.Element => {
                 <Label label={'Место рождения (как указано в паспорте)*'}>
                     <Input
                         placeholder={'Введите наименование региона и населенного пункта'} {...register("birthPlace", birthValidateScheme)}/>
-                    {errors.birthPlace && <span className={style.red}>{errors.birthPlace.message}</span>}
+                    {errors.birthPlace && <span className={globalStyles.red}>{errors.birthPlace.message}</span>}
                 </Label>
             </div>
             <div className={style.form_buttons}>

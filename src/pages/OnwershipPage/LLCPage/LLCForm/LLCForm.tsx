@@ -1,6 +1,7 @@
 import React from 'react';
 import {Label} from "../../../../components/Label/Label";
 import style from "./LLCForm.module.scss";
+import globalStyles from "./../../../../styles/Global.module.scss";
 import {Select} from "../../../../components/Select/Select";
 import {Input} from "../../../../components/Input/Input";
 import {InputWithMask} from "../../../../components/InputWithMask/InputWithMask";
@@ -41,14 +42,14 @@ const LlCForm = (): JSX.Element => {
                         placeholder={'ООО «Московская промышленная компания»'}
                         {...register("name", validationScheme)}
                     />
-                    {errors.name && <span className={style.red}>{errors.name.message}</span>}
+                    {errors.name && <span className={globalStyles.red}>{errors.name.message}</span>}
                 </Label>
                 <Label label={'Сокращение*'}>
                     <Input
                         placeholder={'ООО «МПК»'}
                         {...register('shortName', validationScheme)}
                     />
-                    {errors.shortName && <span className={style.red}>{errors.shortName.message}</span>}
+                    {errors.shortName && <span className={globalStyles.red}>{errors.shortName.message}</span>}
                 </Label>
             </div>
             <div className={style.row}>
@@ -57,20 +58,20 @@ const LlCForm = (): JSX.Element => {
                                    placeholder={'дд.мм.гггг'}
                                    {...register('registrationDate', validationScheme)}
                     />
-                    {errors.registrationDate && <span className={style.red}>{errors.registrationDate.message}</span>}
+                    {errors.registrationDate && <span className={globalStyles.red}>{errors.registrationDate.message}</span>}
                 </Label>
                 <Label label={'ИНН*'} className={style.row_inner}>
                     <InputWithMask mask='99999999' maskPlaceholder='х'
                                    placeholder={'xxxxxxxx'}
                                    {...register('inn', validationScheme)}
                     />
-                    {errors.inn && <span className={style.red}>{errors.inn.message}</span>}
+                    {errors.inn && <span className={globalStyles.red}>{errors.inn.message}</span>}
                 </Label>
                 <Label label={'Скан ИНН*'}>
                     <InputDropzone
                         setValue={setValue} name={'innImg'} setError={setError} clearErrors={clearErrors}
                     />
-                    {errors.innImg && <span className={style.red}>{errors.innImg.message}</span>}
+                    {errors.innImg && <span className={globalStyles.red}>{errors.innImg.message}</span>}
                 </Label>
             </div>
             <div className={style.row}>
@@ -79,7 +80,7 @@ const LlCForm = (): JSX.Element => {
                                    placeholder={'ххххххххххххххх'}
                                    {...register('ogrnip', validationScheme)}
                     />
-                    {errors.ogrnip && <span className={style.red}>{errors.ogrnip.message}</span>}
+                    {errors.ogrnip && <span className={globalStyles.red}>{errors.ogrnip.message}</span>}
                 </Label>
             </div>
             <div className={style.llc_buttons}>

@@ -3,11 +3,11 @@ import {ReactComponent as Logo} from "../../../assets/ownership.svg";
 import StepDescription from "../../../components/StepDescription/StepDescription";
 import LLCForm from "./LLCForm/LLCForm";
 
-import style from './LLCPage.module.scss'
+import globalStyles from './../../../styles/Global.module.scss'
 
 const LlcPage = (): JSX.Element => {
     return (
-        <div className={style.container}>
+        <div className={globalStyles.container}>
             <Logo/>
             <StepDescription title={'Форма собственности'}
                              description={'Выберите форму собственности и заполните данные'}/>

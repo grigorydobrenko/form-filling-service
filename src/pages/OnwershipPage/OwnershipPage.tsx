@@ -5,6 +5,7 @@ import {Label} from "../../components/Label/Label";
 import {Select} from "../../components/Select/Select";
 import {Option} from "../../components/Select/Select.props";
 import style from "./Ownership.module.scss";
+import globalStyles from '../../styles/Global.module.scss'
 import {Button} from "../../components/Button/Button";
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import {switchStep} from "../../utils/switchStep";
@@ -23,7 +24,7 @@ const OwnershipPage = (): JSX.Element => {
     const {setOwnerShip} = useSetOwnerShip()
 
     return (
-        <div className={style.container}>
+        <div className={globalStyles.container}>
             <Logo/>
             <StepDescription title={'Форма собственности'}
                              description={'Выберите форму собственности и заполните данные'}/>
