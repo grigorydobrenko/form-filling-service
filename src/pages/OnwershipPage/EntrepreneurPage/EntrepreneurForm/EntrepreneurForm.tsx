@@ -1,7 +1,6 @@
 import React from 'react';
 import {Label} from "../../../../components/Label/Label";
 import {Select} from "../../../../components/Select/Select";
-import {Option} from "../../../../components/Select/Select.props";
 import style from './EntrepreneurForm.module.scss'
 import {InputWithMask} from "../../../../components/InputWithMask/InputWithMask";
 import InputDropzone from "../../../../components/Dropzone/Dropzone";
@@ -9,11 +8,8 @@ import {Button} from "../../../../components/Button/Button";
 import cn from "classnames";
 import {switchStep} from "../../../../utils/switchStep";
 import useOwnershipForm from "../../../../hooks/useOwnershipForm";
-
-export const OWNERSHIP: Option[] = [
-    {label: 'Индивидуальный предприниматель (ИП)', value: 'Индивидуальный предприниматель (ИП)'},
-    {label: 'Общество с ограниченной ответственностью (ООО)', value: 'Общество с ограниченной ответственностью (ООО)'},
-];
+import {useSetOwnerShip} from "../../../../hooks/useSetOwnerShip";
+import {OWNERSHIP} from "../../OwnershipPage";
 
 const EntrepreneurForm = (): JSX.Element => {
 
@@ -29,11 +25,13 @@ const EntrepreneurForm = (): JSX.Element => {
         dispatch
     } = useOwnershipForm()
 
+    const {setOwnerShip} = useSetOwnerShip()
+
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className={style.row}>
                 <Label label={'Вид деятельности*'} className={style.first_row}>
-                    <Select options={OWNERSHIP}/>
+                    <Select options={OWNERSHIP} onChangeOption={setOwnerShip}/>
                 </Label>
             </div>
             <div className={cn(style.row, style.second_row)}>

@@ -7,8 +7,8 @@ import {Option} from "../../components/Select/Select.props";
 import style from "./Ownership.module.scss";
 import {Button} from "../../components/Button/Button";
 import {useAppDispatch} from "../../app/hooks";
-import {ActivityType, setOwnership} from "../../store/reducers/appSlice";
 import {switchStep} from "../../utils/switchStep";
+import {useSetOwnerShip} from "../../hooks/useSetOwnerShip";
 
 export const OWNERSHIP: Option[] = [
     {label: 'Индивидуальный предприниматель (ИП)', value: 'entrepreneur'},
@@ -19,9 +19,7 @@ const OwnershipPage = (): JSX.Element => {
 
     const dispatch = useAppDispatch()
 
-    const setOwnerShip = (activity: ActivityType) => {
-        dispatch(setOwnership({activity}))
-    }
+    const {setOwnerShip} = useSetOwnerShip()
 
     return (
         <div className={style.container}>

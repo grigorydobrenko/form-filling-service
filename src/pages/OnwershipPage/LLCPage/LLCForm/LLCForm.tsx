@@ -2,11 +2,12 @@ import React from 'react';
 import {Label} from "../../../../components/Label/Label";
 import style from "../../EntrepreneurPage/EntrepreneurForm/EntrepreneurForm.module.scss";
 import {Select} from "../../../../components/Select/Select";
-import {OWNERSHIP} from "../../EntrepreneurPage/EntrepreneurForm/EntrepreneurForm";
 import {Input} from "../../../../components/Input/Input";
 import {InputWithMask} from "../../../../components/InputWithMask/InputWithMask";
 import {Button} from "../../../../components/Button/Button";
 import useOwnershipForm from "../../../../hooks/useOwnershipForm";
+import {useSetOwnerShip} from "../../../../hooks/useSetOwnerShip";
+import {OWNERSHIP} from "../../OwnershipPage";
 
 const LlCForm = (): JSX.Element => {
 
@@ -22,12 +23,13 @@ const LlCForm = (): JSX.Element => {
         dispatch
     } = useOwnershipForm()
 
+    const {setOwnerShip} = useSetOwnerShip()
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className={style.row}>
                 <Label label={'Вид деятельности*'}>
-                    <Select options={OWNERSHIP}/>
+                    <Select options={OWNERSHIP} onChangeOption={setOwnerShip}/>
                 </Label>
             </div>
             <div className={style.row}>
