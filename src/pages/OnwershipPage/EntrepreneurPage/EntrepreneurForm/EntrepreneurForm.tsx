@@ -10,6 +10,7 @@ import {switchStep} from "../../../../utils/switchStep";
 import useOwnershipForm from "../../../../hooks/useOwnershipForm";
 import {useSetOwnerShip} from "../../../../hooks/useSetOwnerShip";
 import {OWNERSHIP} from "../../OwnershipPage";
+import {useAppSelector} from "../../../../app/hooks";
 
 const EntrepreneurForm = (): JSX.Element => {
 
@@ -27,11 +28,13 @@ const EntrepreneurForm = (): JSX.Element => {
 
     const {setOwnerShip} = useSetOwnerShip()
 
+    const activity = useAppSelector(state => state.app.activity)
+
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className={style.row}>
                 <Label label={'Вид деятельности*'} className={style.first_row}>
-                    <Select options={OWNERSHIP} onChangeOption={setOwnerShip}/>
+                    <Select options={OWNERSHIP} onChangeOption={setOwnerShip} value={activity}/>
                 </Label>
             </div>
             <div className={cn(style.row, style.second_row)}>

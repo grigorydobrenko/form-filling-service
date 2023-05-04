@@ -6,7 +6,7 @@ import {Select} from "../../components/Select/Select";
 import {Option} from "../../components/Select/Select.props";
 import style from "./Ownership.module.scss";
 import {Button} from "../../components/Button/Button";
-import {useAppDispatch} from "../../app/hooks";
+import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import {switchStep} from "../../utils/switchStep";
 import {useSetOwnerShip} from "../../hooks/useSetOwnerShip";
 
@@ -18,6 +18,7 @@ export const OWNERSHIP: Option[] = [
 const OwnershipPage = (): JSX.Element => {
 
     const dispatch = useAppDispatch()
+    const activity = useAppSelector(state => state.app.activity)
 
     const {setOwnerShip} = useSetOwnerShip()
 
@@ -27,7 +28,7 @@ const OwnershipPage = (): JSX.Element => {
             <StepDescription title={'Форма собственности'}
                              description={'Выберите форму собственности и заполните данные'}/>
             <Label label={'Вид деятельности*'}>
-                <Select options={OWNERSHIP} onChangeOption={setOwnerShip}/>
+                <Select options={OWNERSHIP} onChangeOption={setOwnerShip} value={activity}/>
             </Label>
             <div className={style.buttons}>
                 <Button color={'white'} onClick={() => switchStep(1, dispatch)}>Назад</Button>

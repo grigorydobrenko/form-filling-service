@@ -8,6 +8,7 @@ import {Button} from "../../../../components/Button/Button";
 import useOwnershipForm from "../../../../hooks/useOwnershipForm";
 import {useSetOwnerShip} from "../../../../hooks/useSetOwnerShip";
 import {OWNERSHIP} from "../../OwnershipPage";
+import {useAppSelector} from "../../../../app/hooks";
 
 const LlCForm = (): JSX.Element => {
 
@@ -25,11 +26,13 @@ const LlCForm = (): JSX.Element => {
 
     const {setOwnerShip} = useSetOwnerShip()
 
+    const activity = useAppSelector(state => state.app.activity)
+
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className={style.row}>
                 <Label label={'Вид деятельности*'}>
-                    <Select options={OWNERSHIP} onChangeOption={setOwnerShip}/>
+                    <Select options={OWNERSHIP} onChangeOption={setOwnerShip} value={activity}/>
                 </Label>
             </div>
             <div className={style.row}>
