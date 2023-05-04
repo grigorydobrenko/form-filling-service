@@ -5,8 +5,9 @@ import CommonPage from "../pages/CommonPage/CommonPage";
 import {useAppSelector} from "./hooks";
 import OwnershipPage from "../pages/OnwershipPage/OwnershipPage";
 import EntrepreneurPage from "../pages/OnwershipPage/EntrepreneurPage/EntrepreneurPage";
+import LLCPage from "../pages/OnwershipPage/LLCPage/LLCPage";
 
-function App() {
+function App(): JSX.Element {
 
     const step = useAppSelector(state => state.app.step)
     const activity = useAppSelector(state => state.app.activity)
@@ -17,6 +18,7 @@ function App() {
             {step === 1 && <CommonPage/>}
             {step === 2 && <OwnershipPage/>}
             {step === 2.1 && activity === "entrepreneur" && <EntrepreneurPage/>}
+            {step === 2.1 && activity === "LLC" && <LLCPage/>}
         </div>
     );
 }

@@ -5,20 +5,17 @@ import {Option} from "../../../../components/Select/Select.props";
 import style from './EntrepreneurForm.module.scss'
 import {InputWithMask} from "../../../../components/InputWithMask/InputWithMask";
 import InputDropzone from "../../../../components/Dropzone/Dropzone";
-import {SubmitHandler, useForm} from "react-hook-form";
-import {useAppDispatch} from "../../../../app/hooks";
 import {Button} from "../../../../components/Button/Button";
 import cn from "classnames";
-import {OwnershipEntrepreneur, setOwnershipData} from "../../../../store/reducers/dataSlice";
 import {switchStep} from "../../../../utils/switchStep";
-import {setStep} from "../../../../store/reducers/appSlice";
+import useOwnershipForm from "../../../../hooks/useOwnershipForm";
 
 export const OWNERSHIP: Option[] = [
     {label: 'Индивидуальный предприниматель (ИП)', value: 'Индивидуальный предприниматель (ИП)'},
     {label: 'Общество с ограниченной ответственностью (ООО)', value: 'Общество с ограниченной ответственностью (ООО)'},
 ];
 
-const EntrepreneurForm = () => {
+const EntrepreneurForm = (): JSX.Element => {
 
     const {
         register,
@@ -26,19 +23,11 @@ const EntrepreneurForm = () => {
         formState: {errors},
         setError,
         clearErrors,
-        setValue
-    } = useForm<OwnershipEntrepreneur>();
-
-    const dispatch = useAppDispatch()
-
-    const onSubmit: SubmitHandler<OwnershipEntrepreneur> = data => {
-        dispatch(setOwnershipData({ownershipData: data}))
-        dispatch(setStep({currentStep: 3}))
-    }
-
-    const validationSheme = {
-        required: 'Required',
-    }
+        setValue,
+        onSubmit,
+        validationScheme,
+        dispatch
+    } = useOwnershipForm()
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -50,23 +39,23 @@ const EntrepreneurForm = () => {
             <div className={cn(style.row, style.second_row)}>
                 <Label label={'ИНН*'} className={style.row_inner}>
                     <InputWithMask mask='99999999' maskPlaceholder='х'
-                                   placeholder={'xxxxxxxx'} {...register('inn', validationSheme)}/>
+                                   placeholder={'xxxxxxxx'} {...register('inn', validationScheme)}/>
                     {errors.inn && <span className={style.red}>{errors.inn.message}</span>}
                 </Label>
                 <Label label={'Скан ИНН*'}>
                     <InputDropzone setValue={setValue} name={'innImg'} setError={setError} clearErrors={clearErrors}/>
                     {errors.innImg && <span className={style.red}>{errors.innImg.message}</span>}
                 </Label>
-                <Label label={'Датарегистрации*'} className={style.row_inner}>
+                <Label label={'Дата регистрации*'} className={style.row_inner}>
                     <InputWithMask mask='99.99.9999' maskPlaceholder='дд.мм.гггг'
-                                   placeholder={'дд.мм.гггг'} {...register('registrationDate', validationSheme)}/>
+                                   placeholder={'дд.мм.гггг'} {...register('registrationDate', validationScheme)}/>
                     {errors.registrationDate && <span className={style.red}>{errors.registrationDate.message}</span>}
                 </Label>
             </div>
             <div className={style.row}>
                 <Label label={'ОГРНИП*'}>
                     <InputWithMask mask='999999999999999' maskPlaceholder='х'
-                                   placeholder={'ххххххххххххххх'} {...register('ogrnip', validationSheme)}/>
+                                   placeholder={'ххххххххххххххх'} {...register('ogrnip', validationScheme)}/>
                     {errors.ogrnip && <span className={style.red}>{errors.ogrnip.message}</span>}
                 </Label>
                 <Label label={'Скан ОГРНИП*'}>

@@ -6,13 +6,13 @@ import {ReactComponent as Upload} from "../../assets/upload.svg";
 import {ReactComponent as PhotoDone} from "../../assets/photo_done.svg";
 import {ReactComponent as RemovePhoto} from "../../assets/remove_photo.svg";
 import {UseFormClearErrors, UseFormSetError, UseFormSetValue} from "react-hook-form";
-import {OwnershipEntrepreneur} from "../../store/reducers/dataSlice";
+import {OwnershipData} from "../../store/reducers/dataSlice";
 
 interface InputDropzoneProps {
     name: string;
-    setValue?: UseFormSetValue<OwnershipEntrepreneur>;
-    setError?: UseFormSetError<OwnershipEntrepreneur>;
-    clearErrors?: UseFormClearErrors<OwnershipEntrepreneur>;
+    setValue?: UseFormSetValue<OwnershipData>;
+    setError?: UseFormSetError<OwnershipData>;
+    clearErrors?: UseFormClearErrors<OwnershipData>;
 }
 
 const InputDropzone = forwardRef<HTMLDivElement, InputDropzoneProps>((props, ref) => {
@@ -24,8 +24,8 @@ const InputDropzone = forwardRef<HTMLDivElement, InputDropzoneProps>((props, ref
     const onDrop = useCallback((acceptedFiles: File[]) => {
         if (acceptedFiles[0].type.includes('image')) {
             setFile({preview: acceptedFiles[0].name, raw: URL.createObjectURL(acceptedFiles[0])})
-            setValue && setValue(name as keyof OwnershipEntrepreneur, URL.createObjectURL(acceptedFiles[0]))
-            clearErrors && clearErrors(name as keyof OwnershipEntrepreneur)
+            setValue && setValue(name as keyof OwnershipData, URL.createObjectURL(acceptedFiles[0]))
+            clearErrors && clearErrors(name as keyof OwnershipData)
         }
     }, [file])
 
@@ -40,7 +40,7 @@ const InputDropzone = forwardRef<HTMLDivElement, InputDropzoneProps>((props, ref
 
     useEffect(() => {
         if (setError) {
-            setError(name as keyof OwnershipEntrepreneur, {
+            setError(name as keyof OwnershipData, {
                 type: "manual",
                 message: "Required"
             })

@@ -3,7 +3,7 @@ import style from './SideBar.module.scss';
 import Step from "../../components/Step/Step";
 import {useAppSelector} from "../../app/hooks";
 
-const SideBar = () => {
+const SideBar = (): JSX.Element => {
 
     const step = useAppSelector(state => state.app.step)
 
@@ -17,7 +17,8 @@ const SideBar = () => {
             </div>
             <div className={style.steps}>
                 <Step stepId={1} step={step} isDone={step > 1} title={'Общие'}/>
-                <Step stepId={2} step={step === 2.1 ? 2 : step} isDone={step !== 2.1 && step > 2} title={'Форма собственности'}/>
+                <Step stepId={2} step={step === 2.1 ? 2 : step} isDone={step !== 2.1 && step > 2}
+                      title={'Форма собственности'}/>
                 <Step stepId={3} step={step} isDone={step > 3} title={'Адрес регистрации'}/>
                 <Step stepId={4} step={step} isDone={step > 4} title={'Адрес проживания'}/>
                 <Step stepId={5} step={step} isDone={step > 5} title={'Социальные сети'}/>

@@ -7,7 +7,7 @@ export const slice = createSlice({
         setCommonData(state, action: PayloadAction<{ data: CommonPersonalData }>) {
             state!.userData = action.payload.data
         },
-        setOwnershipData(state, action: PayloadAction<{ ownershipData: OwnershipEntrepreneur }>) {
+        setOwnershipData(state, action: PayloadAction<{ ownershipData: OwnershipData }>) {
             state!.ownershipData = action.payload.ownershipData
         }
     },
@@ -21,7 +21,7 @@ export const {setCommonData, setOwnershipData} = slice.actions
 
 export interface FormData {
     userData: CommonPersonalData | null,
-    ownershipData: OwnershipEntrepreneur | null
+    ownershipData: OwnershipData | null
 }
 
 export interface CommonPersonalData {
@@ -35,7 +35,7 @@ export interface CommonPersonalData {
     birthDate: string
 }
 
-export interface OwnershipEntrepreneur {
+export interface OwnershipData {
     inn: string,
     innImg: string,
     registrationDate: string,
@@ -43,5 +43,16 @@ export interface OwnershipEntrepreneur {
     ogrnipImg: string,
     loanImg: string,
     excerptImg: string,
-    contract: boolean
+    contract: boolean,
+    name: string,
+    shortName: string,
+    ogrn: string,
+    ogrnImg: string
 }
+
+// export type OwnershipLLC = Pick<OwnershipEntrepreneur, 'inn' | 'innImg' | 'registrationDate'> & {
+//
+// };
+
+
+

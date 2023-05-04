@@ -11,11 +11,11 @@ import {ActivityType, setOwnership} from "../../store/reducers/appSlice";
 import {switchStep} from "../../utils/switchStep";
 
 export const OWNERSHIP: Option[] = [
-    {label: 'Индивидуальный предприниматель (ИП)', value: 'Индивидуальный предприниматель (ИП)'},
-    {label: 'Общество с ограниченной ответственностью (ООО)', value: 'Общество с ограниченной ответственностью (ООО)'},
+    {label: 'Индивидуальный предприниматель (ИП)', value: 'entrepreneur'},
+    {label: 'Общество с ограниченной ответственностью (ООО)', value: 'LLC'},
 ];
 
-const OwnershipPage = () => {
+const OwnershipPage = (): JSX.Element => {
 
     const dispatch = useAppDispatch()
 
@@ -26,7 +26,8 @@ const OwnershipPage = () => {
     return (
         <div className={style.container}>
             <Logo/>
-            <StepDescription title={'Форма собственности'} description={'Выберите форму собственности и заполните данные'}/>
+            <StepDescription title={'Форма собственности'}
+                             description={'Выберите форму собственности и заполните данные'}/>
             <Label label={'Вид деятельности*'}>
                 <Select options={OWNERSHIP} onChangeOption={setOwnerShip}/>
             </Label>
