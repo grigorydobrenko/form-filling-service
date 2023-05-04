@@ -7,9 +7,9 @@ import {Option} from "../../components/Select/Select.props";
 import style from "./Ownership.module.scss";
 import globalStyles from '../../styles/Global.module.scss'
 import {Button} from "../../components/Button/Button";
-import {useAppDispatch, useAppSelector} from "../../app/hooks";
-import {switchStep} from "../../utils/switchStep";
+import {useAppSelector} from "../../app/hooks";
 import {useSetOwnerShip} from "../../hooks/useSetOwnerShip";
+import {useSwitchStep} from "../../hooks/useSwitchStep";
 
 export const OWNERSHIP: Option[] = [
     {label: 'Индивидуальный предприниматель (ИП)', value: 'entrepreneur'},
@@ -18,10 +18,10 @@ export const OWNERSHIP: Option[] = [
 
 const OwnershipPage = (): JSX.Element => {
 
-    const dispatch = useAppDispatch()
     const activity = useAppSelector(state => state.app.activity)
 
     const {setOwnerShip} = useSetOwnerShip()
+    const {switchStep} = useSwitchStep()
 
     return (
         <div className={globalStyles.container}>
@@ -32,8 +32,8 @@ const OwnershipPage = (): JSX.Element => {
                 <Select options={OWNERSHIP} onChangeOption={setOwnerShip} value={activity}/>
             </Label>
             <div className={style.buttons}>
-                <Button color={'white'} onClick={() => switchStep(1, dispatch)}>Назад</Button>
-                <Button type={'submit'} onClick={() => switchStep(2.1, dispatch)}>Далее</Button>
+                <Button color={'white'} onClick={() => switchStep(1)}>Назад</Button>
+                <Button type={'submit'} onClick={() => switchStep(2.1)}>Далее</Button>
             </div>
         </div>
     );

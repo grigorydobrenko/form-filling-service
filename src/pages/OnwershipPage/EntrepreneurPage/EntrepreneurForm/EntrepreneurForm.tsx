@@ -6,11 +6,11 @@ import {InputWithMask} from "../../../../components/InputWithMask/InputWithMask"
 import InputDropzone from "../../../../components/Dropzone/Dropzone";
 import {Button} from "../../../../components/Button/Button";
 import cn from "classnames";
-import {switchStep} from "../../../../utils/switchStep";
 import useOwnershipForm from "../../../../hooks/useOwnershipForm";
 import {useSetOwnerShip} from "../../../../hooks/useSetOwnerShip";
 import {OWNERSHIP} from "../../OwnershipPage";
 import {useAppSelector} from "../../../../app/hooks";
+import {useSwitchStep} from "../../../../hooks/useSwitchStep";
 
 const EntrepreneurForm = (): JSX.Element => {
 
@@ -23,10 +23,10 @@ const EntrepreneurForm = (): JSX.Element => {
         setValue,
         onSubmit,
         validationScheme,
-        dispatch
     } = useOwnershipForm()
 
     const {setOwnerShip} = useSetOwnerShip()
+    const {switchStep} = useSwitchStep()
 
     const activity = useAppSelector(state => state.app.activity)
 
@@ -82,7 +82,7 @@ const EntrepreneurForm = (): JSX.Element => {
                 </label>
             </div>
             <div className={style.row}>
-                <Button color={'white'} onClick={() => switchStep(2, dispatch)}>Назад</Button>
+                <Button color={'white'} onClick={() => switchStep(2)}>Назад</Button>
                 <Button type={'submit'}>Далее</Button>
             </div>
         </form>

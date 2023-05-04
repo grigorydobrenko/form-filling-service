@@ -11,6 +11,7 @@ import {useSetOwnerShip} from "../../../../hooks/useSetOwnerShip";
 import {OWNERSHIP} from "../../OwnershipPage";
 import {useAppSelector} from "../../../../app/hooks";
 import InputDropzone from "../../../../components/Dropzone/Dropzone";
+import {useSwitchStep} from "../../../../hooks/useSwitchStep";
 
 const LlCForm = (): JSX.Element => {
 
@@ -26,6 +27,7 @@ const LlCForm = (): JSX.Element => {
     } = useOwnershipForm()
 
     const {setOwnerShip} = useSetOwnerShip()
+    const {switchStep} = useSwitchStep()
 
     const activity = useAppSelector(state => state.app.activity)
 
@@ -58,7 +60,8 @@ const LlCForm = (): JSX.Element => {
                                    placeholder={'дд.мм.гггг'}
                                    {...register('registrationDate', validationScheme)}
                     />
-                    {errors.registrationDate && <span className={globalStyles.red}>{errors.registrationDate.message}</span>}
+                    {errors.registrationDate &&
+                        <span className={globalStyles.red}>{errors.registrationDate.message}</span>}
                 </Label>
                 <Label label={'ИНН*'} className={style.row_inner}>
                     <InputWithMask mask='99999999' maskPlaceholder='х'
@@ -84,7 +87,7 @@ const LlCForm = (): JSX.Element => {
                 </Label>
             </div>
             <div className={style.llc_buttons}>
-                <Button color={'white'}>Назад</Button>
+                <Button color={'white'} onClick={() => switchStep(2)}>Назад</Button>
                 <Button type={'submit'}>Далее</Button>
             </div>
         </form>
