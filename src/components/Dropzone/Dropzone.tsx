@@ -38,7 +38,6 @@ const InputDropzone = forwardRef<HTMLDivElement, InputDropzoneProps>((props, ref
         setFile({preview: '', raw: ''})
     }
 
-
     useEffect(() => {
         if (setError) {
             setError(name as keyof OwnershipEntrepreneur, {

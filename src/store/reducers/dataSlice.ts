@@ -2,10 +2,13 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 export const slice = createSlice({
     name: 'data',
-    initialState: { userData: null } as FormData | null,
+    initialState: {userData: null, ownershipData: null} as FormData | null,
     reducers: {
         setCommonData(state, action: PayloadAction<{ data: CommonPersonalData }>) {
             state!.userData = action.payload.data
+        },
+        setOwnershipData(state, action: PayloadAction<{ ownershipData: OwnershipEntrepreneur }>) {
+            state!.ownershipData = action.payload.ownershipData
         }
     },
     extraReducers: (builder) => {
@@ -14,10 +17,11 @@ export const slice = createSlice({
 })
 
 export const dataReducer = slice.reducer
-export const {setCommonData} = slice.actions
+export const {setCommonData, setOwnershipData} = slice.actions
 
 export interface FormData {
-    userData: CommonPersonalData | null
+    userData: CommonPersonalData | null,
+    ownershipData: OwnershipEntrepreneur | null
 }
 
 export interface CommonPersonalData {

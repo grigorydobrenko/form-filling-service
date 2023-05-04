@@ -9,7 +9,7 @@ import {SubmitHandler, useForm} from "react-hook-form";
 import {useAppDispatch} from "../../../../app/hooks";
 import {Button} from "../../../../components/Button/Button";
 import cn from "classnames";
-import {OwnershipEntrepreneur} from "../../../../store/reducers/dataSlice";
+import {OwnershipEntrepreneur, setOwnershipData} from "../../../../store/reducers/dataSlice";
 import {switchStep} from "../../../../utils/switchStep";
 import {setStep} from "../../../../store/reducers/appSlice";
 
@@ -32,7 +32,7 @@ const EntrepreneurForm = () => {
     const dispatch = useAppDispatch()
 
     const onSubmit: SubmitHandler<OwnershipEntrepreneur> = data => {
-        console.log(data)
+        dispatch(setOwnershipData({ownershipData: data}))
         dispatch(setStep({currentStep: 3}))
     }
 
