@@ -20,7 +20,8 @@ function App(): JSX.Element {
             {step === 2 && <OwnershipPage/>}
             {step === 2.1 && activity === "entrepreneur" && <EntrepreneurPage/>}
             {step === 2.1 && activity === "LLC" && <LLCPage/>}
-            {step === 3 &&  <AddressPage/>}
+            {step === 3 &&  <AddressPage isLivingAddress={false}/>}
+            {step === 4 &&  <AddressPage isLivingAddress={true}/>}
         </div>
     );
 }

@@ -15,7 +15,7 @@
   width: 158px;
   margin-top: 30px;
   margin-right: 10px;
-  .apartment {
+  .text {
     display: flex;
     min-width: 132px;
     font-weight: 400;
@@ -39,4 +39,21 @@
   display: flex;
   justify-content: space-between;
   margin-top: 220px;
+}
+
+.living_address {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+
+  width: 442px;
+}
+
+.condition_text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #999999;
+  opacity: 0.87;
 }
