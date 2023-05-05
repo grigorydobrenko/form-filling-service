@@ -8,11 +8,12 @@ const useOwnershipForm = () => {
     const {
         register,
         handleSubmit,
-        formState: {errors, dirtyFields},
+        formState: {errors, dirtyFields, isSubmitted, touchedFields},
         setError,
         clearErrors,
         setValue,
-        watch
+        watch,
+        getValues
     } = useForm<OwnershipData>();
 
     const dispatch = useAppDispatch()
@@ -20,6 +21,7 @@ const useOwnershipForm = () => {
     const onSubmit: SubmitHandler<OwnershipData> = data => {
         dispatch(setOwnershipData({ownershipData: data}))
         dispatch(setStep({currentStep: 3}))
+
     }
 
     const validationScheme = {
@@ -45,7 +47,7 @@ const useOwnershipForm = () => {
     return {
         register,
         handleSubmit,
-        formState: {errors, dirtyFields},
+        formState: {errors, dirtyFields, isSubmitted, touchedFields},
         setError,
         clearErrors,
         setValue,
@@ -55,7 +57,7 @@ const useOwnershipForm = () => {
         dateMaskValidationScheme,
         dispatch,
         watch,
-
+        getValues
     }
 };
 

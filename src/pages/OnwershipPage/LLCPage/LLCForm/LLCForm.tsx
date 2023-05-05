@@ -20,7 +20,7 @@ const LlCForm = (): JSX.Element => {
     const {
         register,
         handleSubmit,
-        formState: {errors, dirtyFields},
+        formState: {errors, dirtyFields, isSubmitted, touchedFields},
         setError,
         clearErrors,
         setValue,
@@ -28,7 +28,8 @@ const LlCForm = (): JSX.Element => {
         validationScheme,
         numMaskValidationScheme,
         dateMaskValidationScheme,
-        watch
+        watch,
+        getValues
     } = useOwnershipForm()
 
     const {setOwnerShip} = useSetOwnerShip()
@@ -63,7 +64,14 @@ const LlCForm = (): JSX.Element => {
     }, [inn])
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit((e)=>{
+            const innImg =getValues('innImg')
+            const ogrnImg =getValues('ogrnImg')
+
+            if ( innImg && ogrnImg ){
+                onSubmit(e)
+            }
+        })}>
             <div className={style.row}>
                 <Label label={'Вид деятельности*'} className={globalStyle.activity_select}>
                     <Select options={OWNERSHIP} onChangeOption={setOwnerShip} value={activity}/>
@@ -103,18 +111,24 @@ const LlCForm = (): JSX.Element => {
                 </Label>
                 <Label label={'Скан ИНН*'}>
                     <InputDropzone
-                        setValue={setValue} name={'innImg'} setError={setError} clearErrors={clearErrors}
+                        setValue={setValue} name={'innImg'} setError={setError} clearErrors={clearErrors} isSubmitted={isSubmitted} touchedFields={touchedFields}
                     />
                     {errors.innImg && <span className={globalStyles.red}>{errors.innImg.message}</span>}
                 </Label>
             </div>
             <div className={style.row}>
-                <Label label={'ОГРН*'}>
-                    <InputWithMask mask='999999999999999' maskPlaceholder='х'
-                                   placeholder={'ххххххххххххххх'}
+                <Label label={'ОГРН*'} className={style.ogrn}>
+                    <InputWithMask mask='9999999999999' maskPlaceholder='х'
+                                   placeholder={'xxxxxxxxxxxxx'}
                                    {...register('ogrn', numMaskValidationScheme)}
                     />
                     {errors.ogrn && <span className={globalStyles.red}>{errors.ogrn.message}</span>}
+                </Label>
+                <Label label={'Скан ОГРН*'}>
+                    <InputDropzone
+                        setValue={setValue} name={'ogrnImg'} setError={setError} clearErrors={clearErrors} isSubmitted={isSubmitted} touchedFields={touchedFields}
+                    />
+                    {errors.ogrnImg && <span className={globalStyles.red}>{errors.ogrnImg.message}</span>}
                 </Label>
             </div>
             <div className={style.llc_buttons}>

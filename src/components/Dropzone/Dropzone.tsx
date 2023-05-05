@@ -13,11 +13,12 @@ interface InputDropzoneProps {
     setValue?: UseFormSetValue<OwnershipData>;
     setError?: UseFormSetError<OwnershipData>;
     clearErrors?: UseFormClearErrors<OwnershipData>;
+    isSubmitted?:boolean;
 }
 
 const InputDropzone = forwardRef<HTMLDivElement, InputDropzoneProps>((props, ref) => {
 
-    const {name, setValue, setError, clearErrors} = props
+    const {name, setValue, setError, clearErrors, isSubmitted} = props
 
     const [file, setFile] = useState({preview: '', raw: ''});
 
@@ -39,13 +40,13 @@ const InputDropzone = forwardRef<HTMLDivElement, InputDropzoneProps>((props, ref
     }
 
     useEffect(() => {
-        if (setError) {
-            setError(name as keyof OwnershipData, {
+        if (isSubmitted && !file.raw ) {
+            setError?.(name as keyof OwnershipData, {
                 type: "manual",
                 message: "Обязательное поле"
             })
         }
-    }, [setError])
+    }, [isSubmitted, file.raw])
 
     return (
         <div ref={ref} {...getRootProps({className: styles.dropzone})}>
