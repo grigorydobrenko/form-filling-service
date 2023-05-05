@@ -12,19 +12,21 @@ import {useSetOwnerShip} from "../../../../hooks/useSetOwnerShip";
 import {useAppSelector} from "../../../../app/hooks";
 import {useSwitchStep} from "../../../../hooks/useSwitchStep";
 import {OWNERSHIP} from "../../../../constants/constants";
+import {OwnershipData} from "../../../../store/reducers/dataSlice";
 
 const EntrepreneurForm = (): JSX.Element => {
 
     const {
         register,
         handleSubmit,
-        formState: {errors},
+        formState: {errors, isSubmitted},
         setError,
         clearErrors,
         setValue,
         onSubmit,
         numMaskValidationScheme,
         dateMaskValidationScheme,
+        getValues
     } = useOwnershipForm()
 
     const {setOwnerShip} = useSetOwnerShip()
@@ -32,8 +34,19 @@ const EntrepreneurForm = (): JSX.Element => {
 
     const activity = useAppSelector(state => state.app.activity)
 
+    const customSubmit = (data: OwnershipData) => {
+        const innImg = getValues('innImg')
+        const ogrnipImg = getValues('ogrnipImg')
+        const loanImg = getValues('loanImg')
+        const excerptImg = getValues('excerptImg')
+
+        if (innImg && ogrnipImg && loanImg && excerptImg) {
+            onSubmit(data)
+        }
+    }
+
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(() => customSubmit(getValues()))}>
             <div className={style.row}>
                 <Label label={'Вид деятельности*'} className={globalStyle.activity_select}>
                     <Select options={OWNERSHIP} onChangeOption={setOwnerShip} value={activity}/>
@@ -46,7 +59,8 @@ const EntrepreneurForm = (): JSX.Element => {
                     {errors.inn && <span className={style.red}>{errors.inn.message}</span>}
                 </Label>
                 <Label label={'Скан ИНН*'}>
-                    <InputDropzone setValue={setValue} name={'innImg'} setError={setError} clearErrors={clearErrors}/>
+                    <InputDropzone setValue={setValue} name={'innImg'} setError={setError} clearErrors={clearErrors}
+                                   isSubmitted={isSubmitted}/>
                     {errors.innImg && <span className={style.red}>{errors.innImg.message}</span>}
                 </Label>
                 <Label label={'Дата регистрации*'} className={style.row_inner}>
@@ -63,17 +77,19 @@ const EntrepreneurForm = (): JSX.Element => {
                 </Label>
                 <Label label={'Скан ОГРНИП*'}>
                     <InputDropzone setValue={setValue} name={'ogrnipImg'} setError={setError}
-                                   clearErrors={clearErrors}/>
+                                   clearErrors={clearErrors} isSubmitted={isSubmitted}/>
                     {errors.ogrnipImg && <span className={style.red}>{errors.ogrnipImg.message}</span>}
                 </Label>
             </div>
             <div className={style.row}>
                 <Label label={'Скан договора аренды помещения (офиса)'}>
-                    <InputDropzone setValue={setValue} name={'loanImg'}/>
+                    <InputDropzone setValue={setValue} name={'loanImg'} setError={setError}
+                                   clearErrors={clearErrors} isSubmitted={isSubmitted}/>
+                    {errors.loanImg && <span className={style.red}>{errors.loanImg.message}</span>}
                 </Label>
                 <Label label={'Скан выписки из ЕГРИП (не старше 3 месяцев)*'}>
                     <InputDropzone setValue={setValue} name={'excerptImg'} setError={setError}
-                                   clearErrors={clearErrors}/>
+                                   clearErrors={clearErrors} isSubmitted={isSubmitted}/>
                     {errors.excerptImg && <span className={style.red}>{errors.excerptImg.message}</span>}
                 </Label>
             </div>
