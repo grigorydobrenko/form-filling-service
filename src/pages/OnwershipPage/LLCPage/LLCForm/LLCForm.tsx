@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Label} from "../../../../components/Label/Label";
 import style from "./LLCForm.module.scss";
 import globalStyles from "./../../../../styles/Global.module.scss";
@@ -13,6 +13,7 @@ import InputDropzone from "../../../../components/Dropzone/Dropzone";
 import {useSwitchStep} from "../../../../hooks/useSwitchStep";
 import globalStyle from "../../../../styles/Global.module.scss";
 import {OWNERSHIP} from "../../../../constants/constants";
+import {fetchOrganizationInfo} from "../../../../services/fetchOrganizationInfo";
 
 const LlCForm = (): JSX.Element => {
 
@@ -33,6 +34,10 @@ const LlCForm = (): JSX.Element => {
     const {switchStep} = useSwitchStep()
 
     const activity = useAppSelector(state => state.app.activity)
+
+    useEffect(() => {
+        fetchOrganizationInfo.getFieldsInfo()
+    },[])
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -67,8 +72,8 @@ const LlCForm = (): JSX.Element => {
                         <span className={globalStyles.red}>{errors.registrationDate.message}</span>}
                 </Label>
                 <Label label={'ИНН*'} className={style.row_inner}>
-                    <InputWithMask mask='99999999' maskPlaceholder='х'
-                                   placeholder={'xxxxxxxx'}
+                    <InputWithMask mask='9999999999' maskPlaceholder='х'
+                                   placeholder={'xxxxxxxxxx'}
                                    {...register('inn', numMaskValidationScheme)}
                     />
                     {errors.inn && <span className={globalStyles.red}>{errors.inn.message}</span>}

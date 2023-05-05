@@ -41,8 +41,8 @@ const EntrepreneurForm = (): JSX.Element => {
             </div>
             <div className={cn(style.row, style.second_row)}>
                 <Label label={'ИНН*'} className={style.row_inner}>
-                    <InputWithMask mask='99999999' maskPlaceholder='х'
-                                   placeholder={'xxxxxxxx'} {...register('inn', numMaskValidationScheme)}/>
+                    <InputWithMask mask='9999999999' maskPlaceholder='х'
+                                   placeholder={'xxxxxxxxxx'} {...register('inn', numMaskValidationScheme)}/>
                     {errors.inn && <span className={style.red}>{errors.inn.message}</span>}
                 </Label>
                 <Label label={'Скан ИНН*'}>
