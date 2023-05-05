@@ -10,6 +10,7 @@ import Genders from "./Genders/Genders";
 import {CITY_DATA, COUNTRY} from "../../../constants/constants";
 import useCommonPageForm from "../../../hooks/useCommonPageForm";
 
+
 const CommonPageForm = (): JSX.Element => {
 
     const initialState = 'male'
