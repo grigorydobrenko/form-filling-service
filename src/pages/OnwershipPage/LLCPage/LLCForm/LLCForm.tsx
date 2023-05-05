@@ -14,6 +14,8 @@ import {useSwitchStep} from "../../../../hooks/useSwitchStep";
 import globalStyle from "../../../../styles/Global.module.scss";
 import {OWNERSHIP} from "../../../../constants/constants";
 import {fetchOrganizationInfo} from "../../../../services/fetchOrganizationInfo";
+import dateFormat, {masks} from "dateformat";
+import {getOrganizationFields} from "../../../../utils/getOrganizationFields";
 
 const LlCForm = (): JSX.Element => {
 
@@ -38,31 +40,30 @@ const LlCForm = (): JSX.Element => {
 
     const inn = watch('inn')
 
-    console.log(inn)
+    // console.log(inn)
     const activity = useAppSelector(state => state.app.activity)
 
     useEffect(() => {
 
-        const func = async () => {
+        const setValues = async () => {
+
             if (inn && !inn.includes('x')) {
+                const {
+                    organizationFullName,
+                    organizationShortName,
+                    formatedDate,
+                    ogrn
+                } = await getOrganizationFields(inn)
 
-                console.log('fetch')
-                const data = await fetchOrganizationInfo.getFieldsInfo(inn)
-                console.log(data)
-                const organizationData = data.suggestions[0].data
-                const organizationFullName = organizationData.name.full_with_opf
-                const organizationShortName = organizationData.name.short
-                const registrationDate = organizationData.state.registration_date
-
-
-                console.log(organizationFullName)
+                setValue('name', organizationFullName)
+                setValue('shortName', organizationShortName)
+                setValue('registrationDate', formatedDate ?? '')
+                setValue('ogrn', ogrn)
             }
         }
+        setValues()
 
-        func()
-
-
-    },[inn])
+    }, [inn])
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -114,9 +115,9 @@ const LlCForm = (): JSX.Element => {
                 <Label label={'ОГРН*'}>
                     <InputWithMask mask='999999999999999' maskPlaceholder='х'
                                    placeholder={'ххххххххххххххх'}
-                                   {...register('ogrnip', numMaskValidationScheme)}
+                                   {...register('ogrn', numMaskValidationScheme)}
                     />
-                    {errors.ogrnip && <span className={globalStyles.red}>{errors.ogrnip.message}</span>}
+                    {errors.ogrn && <span className={globalStyles.red}>{errors.ogrn.message}</span>}
                 </Label>
             </div>
             <div className={style.llc_buttons}>
