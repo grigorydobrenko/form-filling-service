@@ -24,7 +24,7 @@ const LlCForm = (): JSX.Element => {
     const {
         register,
         handleSubmit,
-        formState: {errors},
+        formState: {errors, dirtyFields},
         setError,
         clearErrors,
         setValue,
@@ -40,14 +40,16 @@ const LlCForm = (): JSX.Element => {
 
     const inn = watch('inn')
 
-    // console.log(inn)
     const activity = useAppSelector(state => state.app.activity)
 
     useEffect(() => {
 
         const setValues = async () => {
 
-            if (inn && !inn.includes('x')) {
+            const isDirty = Object.keys(dirtyFields).find((fieldName) => fieldName !== 'inn' && dirtyFields[fieldName as keyof typeof dirtyFields])
+
+            if (inn && !inn.includes('x') && !isDirty) {
+                console.log('fetch')
                 const {
                     organizationFullName,
                     organizationShortName,

@@ -8,7 +8,7 @@ const useOwnershipForm = () => {
     const {
         register,
         handleSubmit,
-        formState: {errors},
+        formState: {errors, dirtyFields},
         setError,
         clearErrors,
         setValue,
@@ -45,7 +45,7 @@ const useOwnershipForm = () => {
     return {
         register,
         handleSubmit,
-        formState: {errors},
+        formState: {errors, dirtyFields},
         setError,
         clearErrors,
         setValue,
@@ -54,7 +54,8 @@ const useOwnershipForm = () => {
         numMaskValidationScheme,
         dateMaskValidationScheme,
         dispatch,
-        watch
+        watch,
+
     }
 };
 
