@@ -3,7 +3,7 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 export const slice = createSlice({
     name: 'app',
     initialState: {
-        step: 2.1 as StepType,
+        step: 1 as StepType,
         activity: 'entrepreneur' as ActivityType
     },
     reducers: {
@@ -14,9 +14,6 @@ export const slice = createSlice({
             state.activity = action.payload.activity
         },
     },
-    extraReducers: (builder) => {
-
-    }
 })
 
 export const appReducer = slice.reducer

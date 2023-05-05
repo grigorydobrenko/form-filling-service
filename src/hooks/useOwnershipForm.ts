@@ -22,7 +22,15 @@ const useOwnershipForm = () => {
     }
 
     const validationScheme = {
-        required: 'Required',
+        required: 'Обязательное поле',
+    }
+
+    const maskValidationScheme = {
+        ...validationScheme,
+        pattern: {
+            value: /^\d+$/,
+            message: "Некорректное значение"
+        }
     }
 
     return {
@@ -34,6 +42,7 @@ const useOwnershipForm = () => {
         setValue,
         onSubmit,
         validationScheme,
+        maskValidationScheme,
         dispatch
     }
 };

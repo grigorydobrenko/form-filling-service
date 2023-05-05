@@ -8,10 +8,11 @@ import {InputWithMask} from "../../../../components/InputWithMask/InputWithMask"
 import {Button} from "../../../../components/Button/Button";
 import useOwnershipForm from "../../../../hooks/useOwnershipForm";
 import {useSetOwnerShip} from "../../../../hooks/useSetOwnerShip";
-import {OWNERSHIP} from "../../OwnershipPage";
 import {useAppSelector} from "../../../../app/hooks";
 import InputDropzone from "../../../../components/Dropzone/Dropzone";
 import {useSwitchStep} from "../../../../hooks/useSwitchStep";
+import globalStyle from "../../../../styles/Global.module.scss";
+import {OWNERSHIP} from "../../../../constants/constants";
 
 const LlCForm = (): JSX.Element => {
 
@@ -34,7 +35,7 @@ const LlCForm = (): JSX.Element => {
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className={style.row}>
-                <Label label={'Вид деятельности*'}>
+                <Label label={'Вид деятельности*'} className={globalStyle.activity_select}>
                     <Select options={OWNERSHIP} onChangeOption={setOwnerShip} value={activity}/>
                 </Label>
             </div>

@@ -3,18 +3,13 @@ import {ReactComponent as Logo} from "../../assets/phone_logo.svg";
 import StepDescription from "../../components/StepDescription/StepDescription";
 import {Label} from "../../components/Label/Label";
 import {Select} from "../../components/Select/Select";
-import {Option} from "../../components/Select/Select.props";
 import style from "./Ownership.module.scss";
 import globalStyles from '../../styles/Global.module.scss'
 import {Button} from "../../components/Button/Button";
 import {useAppSelector} from "../../app/hooks";
 import {useSetOwnerShip} from "../../hooks/useSetOwnerShip";
 import {useSwitchStep} from "../../hooks/useSwitchStep";
-
-export const OWNERSHIP: Option[] = [
-    {label: 'Индивидуальный предприниматель (ИП)', value: 'entrepreneur'},
-    {label: 'Общество с ограниченной ответственностью (ООО)', value: 'LLC'},
-];
+import {OWNERSHIP} from "../../constants/constants";
 
 const OwnershipPage = (): JSX.Element => {
 
@@ -28,7 +23,7 @@ const OwnershipPage = (): JSX.Element => {
             <Logo/>
             <StepDescription title={'Форма собственности'}
                              description={'Выберите форму собственности и заполните данные'}/>
-            <Label label={'Вид деятельности*'}>
+            <Label label={'Вид деятельности*'} className={globalStyles.activity_select}>
                 <Select options={OWNERSHIP} onChangeOption={setOwnerShip} value={activity}/>
             </Label>
             <div className={style.buttons}>

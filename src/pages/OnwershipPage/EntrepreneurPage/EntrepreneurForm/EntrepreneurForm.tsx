@@ -2,15 +2,16 @@ import React from 'react';
 import {Label} from "../../../../components/Label/Label";
 import {Select} from "../../../../components/Select/Select";
 import style from './EntrepreneurForm.module.scss'
+import globalStyle from '../../../../styles/Global.module.scss'
 import {InputWithMask} from "../../../../components/InputWithMask/InputWithMask";
 import InputDropzone from "../../../../components/Dropzone/Dropzone";
 import {Button} from "../../../../components/Button/Button";
 import cn from "classnames";
 import useOwnershipForm from "../../../../hooks/useOwnershipForm";
 import {useSetOwnerShip} from "../../../../hooks/useSetOwnerShip";
-import {OWNERSHIP} from "../../OwnershipPage";
 import {useAppSelector} from "../../../../app/hooks";
 import {useSwitchStep} from "../../../../hooks/useSwitchStep";
+import {OWNERSHIP} from "../../../../constants/constants";
 
 const EntrepreneurForm = (): JSX.Element => {
 
@@ -22,7 +23,7 @@ const EntrepreneurForm = (): JSX.Element => {
         clearErrors,
         setValue,
         onSubmit,
-        validationScheme,
+        maskValidationScheme
     } = useOwnershipForm()
 
     const {setOwnerShip} = useSetOwnerShip()
@@ -33,14 +34,14 @@ const EntrepreneurForm = (): JSX.Element => {
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className={style.row}>
-                <Label label={'Вид деятельности*'} className={style.first_row}>
+                <Label label={'Вид деятельности*'} className={globalStyle.activity_select}>
                     <Select options={OWNERSHIP} onChangeOption={setOwnerShip} value={activity}/>
                 </Label>
             </div>
             <div className={cn(style.row, style.second_row)}>
                 <Label label={'ИНН*'} className={style.row_inner}>
                     <InputWithMask mask='99999999' maskPlaceholder='х'
-                                   placeholder={'xxxxxxxx'} {...register('inn', validationScheme)}/>
+                                   placeholder={'xxxxxxxx'} {...register('inn', maskValidationScheme)}/>
                     {errors.inn && <span className={style.red}>{errors.inn.message}</span>}
                 </Label>
                 <Label label={'Скан ИНН*'}>
@@ -49,14 +50,14 @@ const EntrepreneurForm = (): JSX.Element => {
                 </Label>
                 <Label label={'Дата регистрации*'} className={style.row_inner}>
                     <InputWithMask mask='99.99.9999' maskPlaceholder='дд.мм.гггг'
-                                   placeholder={'дд.мм.гггг'} {...register('registrationDate', validationScheme)}/>
+                                   placeholder={'дд.мм.гггг'} {...register('registrationDate', maskValidationScheme)}/>
                     {errors.registrationDate && <span className={style.red}>{errors.registrationDate.message}</span>}
                 </Label>
             </div>
             <div className={style.row}>
                 <Label label={'ОГРНИП*'}>
                     <InputWithMask mask='999999999999999' maskPlaceholder='х'
-                                   placeholder={'ххххххххххххххх'} {...register('ogrnip', validationScheme)}/>
+                                   placeholder={'ххххххххххххххх'} {...register('ogrnip', maskValidationScheme)}/>
                     {errors.ogrnip && <span className={style.red}>{errors.ogrnip.message}</span>}
                 </Label>
                 <Label label={'Скан ОГРНИП*'}>

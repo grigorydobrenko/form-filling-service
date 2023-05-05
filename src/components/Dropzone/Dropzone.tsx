@@ -42,7 +42,7 @@ const InputDropzone = forwardRef<HTMLDivElement, InputDropzoneProps>((props, ref
         if (setError) {
             setError(name as keyof OwnershipData, {
                 type: "manual",
-                message: "Required"
+                message: "Обязательное поле"
             })
         }
     }, [setError])
