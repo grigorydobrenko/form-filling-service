@@ -1,5 +1,17 @@
 import {Option} from "../components/Select/Select.props";
 
+export const BASIC_VALIDATION_SCHEME = {
+    required: 'Обязательное поле',
+}
+
+export const DATE_MASK_VALIDATION_SCHEME = {
+    ...BASIC_VALIDATION_SCHEME,
+    pattern: {
+        value: /^(0[1-9]|[12]\d|3[01])\.(0[1-9]|1[0-2])\.\d{4}$/,
+        message: "Некорректное значение"
+    }
+}
+
 export const CITY_DATA: Option[] = [
     {label: 'Санкт-Птеребург', value: 'Санкт-Птеребург'},
     {label: 'Москва', value: 'Москва'},
@@ -10,12 +22,6 @@ export const COUNTRY: Option[] = [
     {label: 'Россия', value: 'Россия'},
     {label: 'Беларусь', value: 'Беларусь'},
     {label: 'Казахстан', value: 'Казахстан'},
-]
-
-export const REGION: Option[] = [
-    {label: 'Московская область', value: 'Московская область'},
-    {label: 'Брянская область', value: 'Минская область'},
-    {label: 'Брестская область', value: 'Брестская область'},
 ]
 
 export const OWNERSHIP: Option[] = [
@@ -40,5 +46,7 @@ export const KAZAKHSTAN_REGIONS: Option[] = [
     {label: 'Атырауская область', value: 'Атырауская область'},
     {label: 'Актюбинская область', value: 'Актюбинская область'},
 ]
+
+
 
 

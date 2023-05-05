@@ -12,7 +12,7 @@ import {useAppSelector} from "../../../../app/hooks";
 import InputDropzone from "../../../../components/Dropzone/Dropzone";
 import {useSwitchStep} from "../../../../hooks/useSwitchStep";
 import globalStyle from "../../../../styles/Global.module.scss";
-import {OWNERSHIP} from "../../../../constants/constants";
+import {DATE_MASK_VALIDATION_SCHEME, OWNERSHIP} from "../../../../constants/constants";
 import {getOrganizationFields} from "../../../../utils/getOrganizationFields";
 import {OwnershipData} from "../../../../store/reducers/dataSlice";
 
@@ -26,9 +26,8 @@ const LlCForm = (): JSX.Element => {
         clearErrors,
         setValue,
         onSubmit,
-        validationScheme,
+        BASIC_VALIDATION_SCHEME,
         numMaskValidationScheme,
-        dateMaskValidationScheme,
         watch,
         getValues
     } = useOwnershipForm()
@@ -85,14 +84,14 @@ const LlCForm = (): JSX.Element => {
                 <Label label={'Наименование полное*'}>
                     <Input
                         placeholder={'ООО «Московская промышленная компания»'}
-                        {...register("name", validationScheme)}
+                        {...register("name", BASIC_VALIDATION_SCHEME)}
                     />
                     {errors.name && <span className={globalStyles.red}>{errors.name.message}</span>}
                 </Label>
                 <Label label={'Сокращение*'}>
                     <Input
                         placeholder={'ООО «МПК»'}
-                        {...register('shortName', validationScheme)}
+                        {...register('shortName', BASIC_VALIDATION_SCHEME)}
                     />
                     {errors.shortName && <span className={globalStyles.red}>{errors.shortName.message}</span>}
                 </Label>
@@ -101,7 +100,7 @@ const LlCForm = (): JSX.Element => {
                 <Label label={'Дата регистрации*'} className={style.row_inner}>
                     <InputWithMask mask='99.99.9999' maskPlaceholder='дд.мм.гггг'
                                    placeholder={'дд.мм.гггг'}
-                                   {...register('registrationDate', dateMaskValidationScheme)}
+                                   {...register('registrationDate', DATE_MASK_VALIDATION_SCHEME)}
                     />
                     {errors.registrationDate &&
                         <span className={globalStyles.red}>{errors.registrationDate.message}</span>}

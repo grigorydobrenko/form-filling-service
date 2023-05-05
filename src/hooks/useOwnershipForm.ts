@@ -2,6 +2,7 @@ import {SubmitHandler, useForm} from "react-hook-form";
 import {OwnershipData, setOwnershipData} from "../store/reducers/dataSlice";
 import {useAppDispatch} from "../app/hooks";
 import {setStep} from "../store/reducers/appSlice";
+import {BASIC_VALIDATION_SCHEME} from "../constants/constants";
 
 const useOwnershipForm = () => {
 
@@ -21,25 +22,12 @@ const useOwnershipForm = () => {
     const onSubmit: SubmitHandler<OwnershipData> = data => {
         dispatch(setOwnershipData({ownershipData: data}))
         dispatch(setStep({currentStep: 3}))
-
-    }
-
-    const validationScheme = {
-        required: 'Обязательное поле',
     }
 
     const numMaskValidationScheme = {
-        ...validationScheme,
+        ...BASIC_VALIDATION_SCHEME,
         pattern: {
             value: /^\d+$/,
-            message: "Некорректное значение"
-        }
-    }
-
-    const dateMaskValidationScheme = {
-        ...validationScheme,
-        pattern: {
-            value: /^(0[1-9]|[12]\d|3[01])\.(0[1-9]|1[0-2])\.\d{4}$/,
             message: "Некорректное значение"
         }
     }
@@ -52,9 +40,8 @@ const useOwnershipForm = () => {
         clearErrors,
         setValue,
         onSubmit,
-        validationScheme,
+        BASIC_VALIDATION_SCHEME,
         numMaskValidationScheme,
-        dateMaskValidationScheme,
         dispatch,
         watch,
         getValues

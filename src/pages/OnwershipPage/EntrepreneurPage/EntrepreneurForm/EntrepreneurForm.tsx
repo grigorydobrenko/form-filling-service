@@ -11,7 +11,7 @@ import useOwnershipForm from "../../../../hooks/useOwnershipForm";
 import {useSetOwnerShip} from "../../../../hooks/useSetOwnerShip";
 import {useAppSelector} from "../../../../app/hooks";
 import {useSwitchStep} from "../../../../hooks/useSwitchStep";
-import {OWNERSHIP} from "../../../../constants/constants";
+import {DATE_MASK_VALIDATION_SCHEME, OWNERSHIP} from "../../../../constants/constants";
 import {OwnershipData} from "../../../../store/reducers/dataSlice";
 
 const EntrepreneurForm = (): JSX.Element => {
@@ -25,7 +25,6 @@ const EntrepreneurForm = (): JSX.Element => {
         setValue,
         onSubmit,
         numMaskValidationScheme,
-        dateMaskValidationScheme,
         getValues
     } = useOwnershipForm()
 
@@ -65,7 +64,7 @@ const EntrepreneurForm = (): JSX.Element => {
                 </Label>
                 <Label label={'Дата регистрации*'} className={style.row_inner}>
                     <InputWithMask mask='99.99.9999' maskPlaceholder='дд.мм.гггг'
-                                   placeholder={'дд.мм.гггг'} {...register('registrationDate', dateMaskValidationScheme)}/>
+                                   placeholder={'дд.мм.гггг'} {...register('registrationDate', DATE_MASK_VALIDATION_SCHEME)}/>
                     {errors.registrationDate && <span className={style.red}>{errors.registrationDate.message}</span>}
                 </Label>
             </div>

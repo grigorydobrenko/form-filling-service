@@ -4,7 +4,7 @@ export const slice = createSlice({
     name: 'app',
     initialState: {
         step: 3 as StepType,
-        activity: 'LLC' as ActivityType
+        activity: 'entrepreneur' as ActivityType
     },
     reducers: {
         setStep(state, action: PayloadAction<{ currentStep: StepType }>) {

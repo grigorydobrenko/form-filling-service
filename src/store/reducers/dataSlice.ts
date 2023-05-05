@@ -2,13 +2,16 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 export const slice = createSlice({
     name: 'data',
-    initialState: {userData: null, ownershipData: null} as FormData | null,
+    initialState: {userData: null, ownershipData: null, registrationData: null} as FormData | null,
     reducers: {
         setCommonData(state, action: PayloadAction<{ data: CommonPersonalData }>) {
             state!.userData = action.payload.data
         },
         setOwnershipData(state, action: PayloadAction<{ ownershipData: OwnershipData }>) {
             state!.ownershipData = action.payload.ownershipData
+        },
+        setRegistrationData(state, action: PayloadAction<{ registrationData: RegistrationAddress }>) {
+            state!.registrationData = action.payload.registrationData
         }
     },
     extraReducers: (builder) => {
@@ -17,11 +20,12 @@ export const slice = createSlice({
 })
 
 export const dataReducer = slice.reducer
-export const {setCommonData, setOwnershipData} = slice.actions
+export const {setCommonData, setOwnershipData, setRegistrationData} = slice.actions
 
 export interface FormData {
     userData: CommonPersonalData | null,
     ownershipData: OwnershipData | null
+    registrationData: RegistrationAddress | null
 }
 
 export interface CommonPersonalData {
@@ -50,9 +54,15 @@ export interface OwnershipData {
     ogrnImg: string
 }
 
-// export type OwnershipLLC = Pick<OwnershipEntrepreneur, 'inn' | 'innImg' | 'registrationDate'> & {
-//
-// };
+export interface RegistrationAddress {
+    country: string,
+    region: string,
+    city: string,
+    street: string,
+    home: string,
+    apartment?: string,
+    addressRegistrationDate: string,
+}
 
 
 
