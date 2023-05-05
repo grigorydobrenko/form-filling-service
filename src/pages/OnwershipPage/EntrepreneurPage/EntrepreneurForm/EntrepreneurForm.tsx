@@ -23,7 +23,8 @@ const EntrepreneurForm = (): JSX.Element => {
         clearErrors,
         setValue,
         onSubmit,
-        maskValidationScheme
+        numMaskValidationScheme,
+        dateMaskValidationScheme,
     } = useOwnershipForm()
 
     const {setOwnerShip} = useSetOwnerShip()
@@ -41,7 +42,7 @@ const EntrepreneurForm = (): JSX.Element => {
             <div className={cn(style.row, style.second_row)}>
                 <Label label={'ИНН*'} className={style.row_inner}>
                     <InputWithMask mask='99999999' maskPlaceholder='х'
-                                   placeholder={'xxxxxxxx'} {...register('inn', maskValidationScheme)}/>
+                                   placeholder={'xxxxxxxx'} {...register('inn', numMaskValidationScheme)}/>
                     {errors.inn && <span className={style.red}>{errors.inn.message}</span>}
                 </Label>
                 <Label label={'Скан ИНН*'}>
@@ -50,14 +51,14 @@ const EntrepreneurForm = (): JSX.Element => {
                 </Label>
                 <Label label={'Дата регистрации*'} className={style.row_inner}>
                     <InputWithMask mask='99.99.9999' maskPlaceholder='дд.мм.гггг'
-                                   placeholder={'дд.мм.гггг'} {...register('registrationDate', maskValidationScheme)}/>
+                                   placeholder={'дд.мм.гггг'} {...register('registrationDate', dateMaskValidationScheme)}/>
                     {errors.registrationDate && <span className={style.red}>{errors.registrationDate.message}</span>}
                 </Label>
             </div>
             <div className={style.row}>
                 <Label label={'ОГРНИП*'}>
                     <InputWithMask mask='999999999999999' maskPlaceholder='х'
-                                   placeholder={'ххххххххххххххх'} {...register('ogrnip', maskValidationScheme)}/>
+                                   placeholder={'ххххххххххххххх'} {...register('ogrnip', numMaskValidationScheme)}/>
                     {errors.ogrnip && <span className={style.red}>{errors.ogrnip.message}</span>}
                 </Label>
                 <Label label={'Скан ОГРНИП*'}>

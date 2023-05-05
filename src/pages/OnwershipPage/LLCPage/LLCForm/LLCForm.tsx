@@ -25,6 +25,8 @@ const LlCForm = (): JSX.Element => {
         setValue,
         onSubmit,
         validationScheme,
+        numMaskValidationScheme,
+        dateMaskValidationScheme,
     } = useOwnershipForm()
 
     const {setOwnerShip} = useSetOwnerShip()
@@ -59,7 +61,7 @@ const LlCForm = (): JSX.Element => {
                 <Label label={'Дата регистрации*'} className={style.row_inner}>
                     <InputWithMask mask='99.99.9999' maskPlaceholder='дд.мм.гггг'
                                    placeholder={'дд.мм.гггг'}
-                                   {...register('registrationDate', validationScheme)}
+                                   {...register('registrationDate', dateMaskValidationScheme)}
                     />
                     {errors.registrationDate &&
                         <span className={globalStyles.red}>{errors.registrationDate.message}</span>}
@@ -67,7 +69,7 @@ const LlCForm = (): JSX.Element => {
                 <Label label={'ИНН*'} className={style.row_inner}>
                     <InputWithMask mask='99999999' maskPlaceholder='х'
                                    placeholder={'xxxxxxxx'}
-                                   {...register('inn', validationScheme)}
+                                   {...register('inn', numMaskValidationScheme)}
                     />
                     {errors.inn && <span className={globalStyles.red}>{errors.inn.message}</span>}
                 </Label>
@@ -82,7 +84,7 @@ const LlCForm = (): JSX.Element => {
                 <Label label={'ОГРН*'}>
                     <InputWithMask mask='999999999999999' maskPlaceholder='х'
                                    placeholder={'ххххххххххххххх'}
-                                   {...register('ogrnip', validationScheme)}
+                                   {...register('ogrnip', numMaskValidationScheme)}
                     />
                     {errors.ogrnip && <span className={globalStyles.red}>{errors.ogrnip.message}</span>}
                 </Label>

@@ -6,34 +6,23 @@ import {Input} from "../../../components/Input/Input";
 import {Label} from "../../../components/Label/Label";
 import {Select} from "../../../components/Select/Select";
 import {Button} from "../../../components/Button/Button";
-import {SubmitHandler, useForm} from "react-hook-form";
-import {CommonPersonalData, setCommonData} from "../../../store/reducers/dataSlice";
-import {useAppDispatch} from "../../../app/hooks";
-import {setStep} from "../../../store/reducers/appSlice";
 import Genders from "./Genders/Genders";
 import {CITY_DATA, COUNTRY} from "../../../constants/constants";
+import useCommonPageForm from "../../../hooks/useCommonPageForm";
 
 const CommonPageForm = (): JSX.Element => {
 
     const initialState = 'male'
     const [gender, setGender] = useState(initialState)
 
-    const {register, handleSubmit, formState: {errors}} = useForm<CommonPersonalData>();
-
-    const dispatch = useAppDispatch()
-
-    const onSubmit: SubmitHandler<CommonPersonalData> = data => {
-        data.gender = gender
-        dispatch(setCommonData({data}))
-        dispatch(setStep({currentStep: 2}))
-    }
-
-    const nameValidateScheme = {required: 'Field is required', minLength: 2, maxLength: 30}
-    const birthValidateScheme = {
-        required: 'Field is required',
-        minLength: 2,
-        maxLength: 80
-    }
+    const {
+        register,
+        handleSubmit,
+        formState: {errors},
+        onSubmit,
+        nameValidateScheme,
+        birthPlaceValidateScheme,
+    } = useCommonPageForm(gender)
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -83,7 +72,7 @@ const CommonPageForm = (): JSX.Element => {
             <div className={style.row}>
                 <Label label={'Место рождения (как указано в паспорте)*'}>
                     <Input
-                        placeholder={'Введите наименование региона и населенного пункта'} {...register("birthPlace", birthValidateScheme)}/>
+                        placeholder={'Введите наименование региона и населенного пункта'} {...register("birthPlace", birthPlaceValidateScheme)}/>
                     {errors.birthPlace && <span className={globalStyles.red}>{errors.birthPlace.message}</span>}
                 </Label>
             </div>
