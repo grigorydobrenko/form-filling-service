@@ -10,7 +10,6 @@ export const getOrganizationFields = async (inn: string) => {
     let organizationFullName, organizationShortName, registrationDate, ogrn, formatedDate
 
     if (!data.suggestions || !data.suggestions.length || !data.suggestions[0].data) {
-        // Return an empty object or throw an error here if the response is not as expected
         return {organizationFullName, organizationShortName, formatedDate, ogrn};
     }
 
@@ -27,20 +26,4 @@ export const getOrganizationFields = async (inn: string) => {
         ogrn
     }
 
-    // const data = await fetchOrganizationInfo.getFieldsInfo(inn)
-    //
-    // const organizationData = data.suggestions[0].data
-    //
-    // const organizationFullName = organizationData.name.full_with_opf
-    // const organizationShortName = organizationData.name.short
-    // const registrationDate = organizationData.state.registration_date
-    // const formatedDate = dateFormat(registrationDate, 'dd.mm.yyyy')
-    // const ogrn = organizationData.ogrn
-    //
-    // return {
-    //     organizationFullName,
-    //     organizationShortName,
-    //     formatedDate,
-    //     ogrn
-    // }
 }
