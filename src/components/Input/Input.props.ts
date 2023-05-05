@@ -6,4 +6,5 @@ export interface InputProps
   error?: string;
   type?: 'text' | 'textarea' | 'password' | 'date' | 'number';
   variant?: 'primary' | 'password';
+  closeButton?: boolean;
 }

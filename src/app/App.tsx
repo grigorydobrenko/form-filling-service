@@ -7,6 +7,7 @@ import OwnershipPage from "../pages/OnwershipPage/OwnershipPage";
 import EntrepreneurPage from "../pages/OnwershipPage/EntrepreneurPage/EntrepreneurPage";
 import LLCPage from "../pages/OnwershipPage/LLCPage/LLCPage";
 import AddressPage from "../pages/AddressPage/AddressPage";
+import SocialsPage from "../pages/SocialsPage/SocialsPage";
 
 function App(): JSX.Element {
 
@@ -22,6 +23,7 @@ function App(): JSX.Element {
             {step === 2.1 && activity === "LLC" && <LLCPage/>}
             {step === 3 &&  <AddressPage isLivingAddress={false}/>}
             {step === 4 &&  <AddressPage isLivingAddress={true}/>}
+            {step === 5 &&  <SocialsPage/>}
         </div>
     );
 }

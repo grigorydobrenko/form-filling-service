@@ -44,3 +44,14 @@
   right: 20px;
   transform: translateY(-50%);
 }
+
+.relative {
+  position: relative;
+}
+
+.logo_container {
+  position: absolute;
+  top: 17px;
+  right: 20px;
+  cursor: pointer;
+}
