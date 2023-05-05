@@ -19,7 +19,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       ...restProps
     } = props;
 
-    const [currentValue, setCurrentValue] = useState(value)
+    const [currentValue, setCurrentValue] = useState(value ?? '')
 
     return (
       <div className={cn(styles.wrapper, classNameWrapper, {[styles.relative] : closeButton})}>
@@ -33,7 +33,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           )}
           ref={ref}
           type={type}
-          onChange={(event) => {setCurrentValue(event.currentTarget.value)}}
+          onChange={(event) => {
+              setCurrentValue(event.currentTarget.value);
+              if (props.onChange) {
+                  props.onChange(event);
+              }
+          }}
           value={currentValue}
           {...restProps}
         />

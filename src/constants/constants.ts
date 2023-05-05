@@ -47,6 +47,19 @@ export const KAZAKHSTAN_REGIONS: Option[] = [
     {label: 'Актюбинская область', value: 'Актюбинская область'},
 ]
 
+export const SOCIALS: Option[] = [
+    {label: 'Вконтакте', value: 'Вконтакте'},
+    {label: 'Instagram', value: 'Instagram'},
+    {label: 'WhatsApp', value: 'WhatsApp'},
+    {label: 'YouTube', value: 'YouTube'},
+    {label: 'Одноклассники', value: 'Одноклассники'},
+    {label: 'Facebook', value: 'Facebook'},
+    {label: 'Viber', value: 'Viber'},
+    {label: 'Twitter', value: 'Twitter'},
+    {label: 'Vimeo', value: 'Vimeo'},
+    {label: 'Skype', value: 'Skype'},
+]
+
 
 
 
