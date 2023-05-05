@@ -14,13 +14,14 @@ import {useSwitchStep} from "../../../../hooks/useSwitchStep";
 import globalStyle from "../../../../styles/Global.module.scss";
 import {OWNERSHIP} from "../../../../constants/constants";
 import {getOrganizationFields} from "../../../../utils/getOrganizationFields";
+import {OwnershipData} from "../../../../store/reducers/dataSlice";
 
 const LlCForm = (): JSX.Element => {
 
     const {
         register,
         handleSubmit,
-        formState: {errors, dirtyFields, isSubmitted, touchedFields},
+        formState: {errors, dirtyFields, isSubmitted},
         setError,
         clearErrors,
         setValue,
@@ -38,6 +39,16 @@ const LlCForm = (): JSX.Element => {
     const inn = watch('inn')
 
     const activity = useAppSelector(state => state.app.activity)
+
+    const customSubmit = (data: OwnershipData) => {
+        const innImg = getValues('innImg')
+        const ogrnImg = getValues('ogrnImg')
+
+        if (innImg && ogrnImg) {
+            onSubmit(data)
+        }
+    }
+
 
     useEffect(() => {
 
@@ -64,14 +75,7 @@ const LlCForm = (): JSX.Element => {
     }, [inn])
 
     return (
-        <form onSubmit={handleSubmit((e)=>{
-            const innImg =getValues('innImg')
-            const ogrnImg =getValues('ogrnImg')
-
-            if ( innImg && ogrnImg ){
-                onSubmit(e)
-            }
-        })}>
+        <form onSubmit={handleSubmit(() => customSubmit(getValues()))}>
             <div className={style.row}>
                 <Label label={'Вид деятельности*'} className={globalStyle.activity_select}>
                     <Select options={OWNERSHIP} onChangeOption={setOwnerShip} value={activity}/>
@@ -111,7 +115,8 @@ const LlCForm = (): JSX.Element => {
                 </Label>
                 <Label label={'Скан ИНН*'}>
                     <InputDropzone
-                        setValue={setValue} name={'innImg'} setError={setError} clearErrors={clearErrors} isSubmitted={isSubmitted} touchedFields={touchedFields}
+                        setValue={setValue} name={'innImg'} setError={setError} clearErrors={clearErrors}
+                        isSubmitted={isSubmitted}
                     />
                     {errors.innImg && <span className={globalStyles.red}>{errors.innImg.message}</span>}
                 </Label>
@@ -126,7 +131,8 @@ const LlCForm = (): JSX.Element => {
                 </Label>
                 <Label label={'Скан ОГРН*'}>
                     <InputDropzone
-                        setValue={setValue} name={'ogrnImg'} setError={setError} clearErrors={clearErrors} isSubmitted={isSubmitted} touchedFields={touchedFields}
+                        setValue={setValue} name={'ogrnImg'} setError={setError} clearErrors={clearErrors}
+                        isSubmitted={isSubmitted}
                     />
                     {errors.ogrnImg && <span className={globalStyles.red}>{errors.ogrnImg.message}</span>}
                 </Label>
