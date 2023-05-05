@@ -17,6 +17,8 @@ import {fetchOrganizationInfo} from "../../../../services/fetchOrganizationInfo"
 
 const LlCForm = (): JSX.Element => {
 
+    // const [inn]
+
     const {
         register,
         handleSubmit,
@@ -28,16 +30,39 @@ const LlCForm = (): JSX.Element => {
         validationScheme,
         numMaskValidationScheme,
         dateMaskValidationScheme,
+        watch
     } = useOwnershipForm()
 
     const {setOwnerShip} = useSetOwnerShip()
     const {switchStep} = useSwitchStep()
 
+    const inn = watch('inn')
+
+    console.log(inn)
     const activity = useAppSelector(state => state.app.activity)
 
     useEffect(() => {
-        fetchOrganizationInfo.getFieldsInfo()
-    },[])
+
+        const func = async () => {
+            if (inn && !inn.includes('x')) {
+
+                console.log('fetch')
+                const data = await fetchOrganizationInfo.getFieldsInfo(inn)
+                console.log(data)
+                const organizationData = data.suggestions[0].data
+                const organizationFullName = organizationData.name.full_with_opf
+                const organizationShortName = organizationData.name.short
+                const registrationDate = organizationData.state.registration_date
+
+
+                console.log(organizationFullName)
+            }
+        }
+
+        func()
+
+
+    },[inn])
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -72,7 +97,7 @@ const LlCForm = (): JSX.Element => {
                         <span className={globalStyles.red}>{errors.registrationDate.message}</span>}
                 </Label>
                 <Label label={'ИНН*'} className={style.row_inner}>
-                    <InputWithMask mask='9999999999' maskPlaceholder='х'
+                    <InputWithMask mask='9999999999' maskPlaceholder='x'
                                    placeholder={'xxxxxxxxxx'}
                                    {...register('inn', numMaskValidationScheme)}
                     />

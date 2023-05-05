@@ -11,7 +11,8 @@ const useOwnershipForm = () => {
         formState: {errors},
         setError,
         clearErrors,
-        setValue
+        setValue,
+        watch
     } = useForm<OwnershipData>();
 
     const dispatch = useAppDispatch()
@@ -52,7 +53,8 @@ const useOwnershipForm = () => {
         validationScheme,
         numMaskValidationScheme,
         dateMaskValidationScheme,
-        dispatch
+        dispatch,
+        watch
     }
 };
 

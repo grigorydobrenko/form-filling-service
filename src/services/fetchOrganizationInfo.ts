@@ -1,12 +1,10 @@
-import {instance, query} from "./httpService";
+import {instance} from "./httpService";
 
 export const fetchOrganizationInfo = {
-    getFieldsInfo: async () => {
-        const {data} = await instance.post('', JSON.stringify({query: query}))
+    getFieldsInfo: async (query: string) => {
+        const {data} = await instance.post('',{query})
+        return data
         console.log(data);
 
-        // .catch(error => {
-        //     console.log(error);
-        // });
     }
 }
