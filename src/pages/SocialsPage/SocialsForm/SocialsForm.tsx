@@ -1,36 +1,36 @@
-import React from 'react';
-import {Input} from "../../../components/Input/Input";
-import {Label} from "../../../components/Label/Label";
-import {Select} from "../../../components/Select/Select";
-import {Option} from "../../../components/Select/Select.props";
+import React, {useState} from 'react';
 import style from "./SocialsForm.module.scss"
-import {ReactComponent as Logo} from "../../../assets/socials.svg";
+import {ReactComponent as Logo} from "../../../assets/add_social.svg";
+import Social from "../../../components/Social/Social";
+import styles from "../../AddressPage/AddressPageForm/AddressPageForm.module.scss";
+import {Button} from "../../../components/Button/Button";
+import {useSwitchStep} from "../../../hooks/useSwitchStep";
+import {useForm} from "react-hook-form";
 
-const SOCIALS: Option[] = [
-    {label: 'Вконтакте', value: 'Вконтакте'},
-    {label: 'Instagram', value: 'Instagram'},
-    {label: 'WhatsApp', value: 'WhatsApp'},
-    {label: 'YouTube', value: 'YouTube'},
-    {label: 'Одноклассники', value: 'Одноклассники'},
-    {label: 'Facebook', value: 'Facebook'},
-    {label: 'Viber', value: 'Viber'},
-    {label: 'Twitter', value: 'Twitter'},
-    {label: 'Vimeo', value: 'Vimeo'},
-    {label: 'Skype', value: 'Skype'},
-]
+const SocialsForm = (): JSX.Element => {
 
-const SocialsForm = () => {
+    const [socials, addSocial] = useState(0)
+
+    const array = Array.from({ length: socials }, (_, index) => index);
+
+    const {register, handleSubmit} = useForm()
+
+    const {switchStep} = useSwitchStep()
+
     return (
         <form>
             <div>
-                <Label label={'Сайт / Приложение*'}>
-                    <div className={style.social_picker}>
-                        <Select options={SOCIALS} className={style.select_social}/>
-                        <Input closeButton={true} className={style.input_social} placeholder={'social.com/example'}/>
-                    </div>
-                </Label>
+                {array.map((_, index) => {
+                    return <Social key={index} />;
+                })}
             </div>
-            <Logo/>
+            <div className={style.add_socials} onClick={() => addSocial(socials + 1)}>
+                <Logo />
+            </div>
+            <div className={styles.buttons}>
+                <Button color={'white'} onClick={() => switchStep(4)}>Назад</Button>
+                <Button type={'submit'}>Сохранить</Button>
+            </div>
         </form>
     );
 };

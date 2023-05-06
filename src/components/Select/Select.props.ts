@@ -9,4 +9,5 @@ export interface SelectProps
   options?: Option[];
   error?: string;
   onChangeOption?: Function;
+  onChangeCallback?: (value: string) => void;
 }

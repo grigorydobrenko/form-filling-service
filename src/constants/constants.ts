@@ -48,16 +48,16 @@ export const KAZAKHSTAN_REGIONS: Option[] = [
 ]
 
 export const SOCIALS: Option[] = [
-    {label: 'Вконтакте', value: 'Вконтакте'},
-    {label: 'Instagram', value: 'Instagram'},
-    {label: 'WhatsApp', value: 'WhatsApp'},
-    {label: 'YouTube', value: 'YouTube'},
-    {label: 'Одноклассники', value: 'Одноклассники'},
-    {label: 'Facebook', value: 'Facebook'},
-    {label: 'Viber', value: 'Viber'},
-    {label: 'Twitter', value: 'Twitter'},
-    {label: 'Vimeo', value: 'Vimeo'},
-    {label: 'Skype', value: 'Skype'},
+    {label: 'Вконтакте', value: 'vk.com/example'},
+    {label: 'Instagram', value: 'instagram.com/example'},
+    {label: 'WhatsApp', value: 'whatsapp.com/example'},
+    {label: 'YouTube', value: 'youtube.com/example'},
+    {label: 'Одноклассники', value: 'ok.com/example'},
+    {label: 'Facebook', value: 'fb.com/example'},
+    {label: 'Viber', value: 'viber.com./example'},
+    {label: 'Twitter', value: 'twitter.com/example'},
+    {label: 'Vimeo', value: 'vimeo.com/example'},
+    {label: 'Skype', value: 'skype.com/example'},
 ]
 
 

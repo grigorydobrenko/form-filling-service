@@ -75,7 +75,7 @@ const AddressPageForm: FC<Props> = ({isLivingAddress}) => {
         <form onSubmit={handleSubmit(onSubmit)}>
             {isLivingAddress && <div className={style.row}>
                 <label className={styles.living_address}>
-                    <input type="checkbox" onClick={onNext}/>
+                    <input type="checkbox" onChange={onNext} checked={false}/>
                     <span className={styles.condition_text}>Адрес регистрации и фактического проживания совпадают</span>
                 </label>
             </div>}
@@ -109,7 +109,7 @@ const AddressPageForm: FC<Props> = ({isLivingAddress}) => {
                         <span className={globalStyles.red}>{errors.apartment.message}</span>}
                 </Label>
                 <label className={styles.apartment_row}>
-                    <input type="checkbox" checked={hasApartment} onClick={() => setHasApartment(!hasApartment)}/>
+                    <input type="checkbox" checked={hasApartment} onChange={() => setHasApartment(!hasApartment)}/>
                     <span className={styles.text}>Нет квартиры</span>
                 </label>
                 <Label label={'Дата регистрации*'} className={styles.date_registration}>
