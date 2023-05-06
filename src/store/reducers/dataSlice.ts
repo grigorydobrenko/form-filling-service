@@ -2,7 +2,13 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 export const slice = createSlice({
     name: 'data',
-    initialState: {userData: null, ownershipData: null, registrationData: null, livingData: null} as FormData | null,
+    initialState: {
+        userData: null,
+        ownershipData: null,
+        registrationData: null,
+        livingData: null,
+        socialsData: null
+    } as FormData | null,
     reducers: {
         setCommonData(state, action: PayloadAction<{ data: CommonPersonalData }>) {
             state!.userData = action.payload.data
@@ -15,18 +21,22 @@ export const slice = createSlice({
         },
         setLivingData(state) {
             state!.livingData = state!.registrationData
+        },
+        setSocialsData(state, action: PayloadAction<{ socialsData: SocialsData }>) {
+            state!.socialsData = action.payload.socialsData
         }
     },
 })
 
 export const dataReducer = slice.reducer
-export const {setCommonData, setOwnershipData, setRegistrationData, setLivingData} = slice.actions
+export const {setCommonData, setOwnershipData, setRegistrationData, setLivingData, setSocialsData} = slice.actions
 
 export interface FormData {
     userData: CommonPersonalData | null,
     ownershipData: OwnershipData | null
     registrationData: RegistrationAddress | null
     livingData: RegistrationAddress | null
+    socialsData: SocialsData | null
 }
 
 export interface CommonPersonalData {
@@ -65,5 +75,17 @@ export interface RegistrationAddress {
     addressRegistrationDate: string,
 }
 
+export interface SocialsData {
+    vk?: string
+    instagram?: string
+    whatsapp?: string
+    youtube?: string
+    ok?: string
+    fb?: string
+    viber?: string
+    twitter?: string
+    vimeo?: string
+    skype?: string
+}
 
 

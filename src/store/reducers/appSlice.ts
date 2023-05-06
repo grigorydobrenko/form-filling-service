@@ -3,7 +3,7 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 export const slice = createSlice({
     name: 'app',
     initialState: {
-        step: 5 as StepType,
+        step: 1 as StepType,
         activity: 'entrepreneur' as ActivityType
     },
     reducers: {
@@ -20,6 +20,6 @@ export const appReducer = slice.reducer
 
 export const {setStep, setOwnership} = slice.actions
 
-export type StepType = 1 | 2 | 2.1 | 3 | 4 | 5
+export type StepType = 1 | 2 | 2.1 | 3 | 4 | 5 | 6
 export type ActivityType = 'entrepreneur' | 'LLC'
 

@@ -8,7 +8,7 @@ import {Select} from "../../../components/Select/Select";
 import {Button} from "../../../components/Button/Button";
 import Genders from "./Genders/Genders";
 import {CITY_DATA, COUNTRY} from "../../../constants/constants";
-import useCommonPageForm from "../../../hooks/useCommonPageForm";
+import useCommonPageForm from "../../../customHooks/useCommonPageForm";
 
 
 const CommonPageForm = (): JSX.Element => {

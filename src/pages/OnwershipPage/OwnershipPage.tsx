@@ -7,8 +7,8 @@ import style from "./Ownership.module.scss";
 import globalStyles from '../../styles/Global.module.scss'
 import {Button} from "../../components/Button/Button";
 import {useAppSelector} from "../../app/hooks";
-import {useSetOwnerShip} from "../../hooks/useSetOwnerShip";
-import {useSwitchStep} from "../../hooks/useSwitchStep";
+import {useSetOwnerShip} from "../../customHooks/useSetOwnerShip";
+import {useSwitchStep} from "../../customHooks/useSwitchStep";
 import {OWNERSHIP} from "../../constants/constants";
 
 const OwnershipPage = (): JSX.Element => {

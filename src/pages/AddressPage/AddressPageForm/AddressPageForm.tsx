@@ -21,7 +21,7 @@ import {useAppDispatch} from "../../../app/hooks";
 import {setStep} from "../../../store/reducers/appSlice";
 import globalStyles from "../../../styles/Global.module.scss";
 import {Button} from "../../../components/Button/Button";
-import {useSwitchStep} from "../../../hooks/useSwitchStep";
+import {useSwitchStep} from "../../../customHooks/useSwitchStep";
 
 const AddressPageForm: FC<Props> = ({isLivingAddress}) => {
 
